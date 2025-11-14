@@ -1,0 +1,68 @@
+library(readr)
+base_saludmental <- read_delim("base_saludmental.csv", 
+                               delim = ";", escape_double = FALSE, trim_ws = TRUE)
+View(base_saludmental)
+
+names(base_saludmental)
+names(base_saludmental_1_)[names(base_saludmental_1_) == "Confianza vecindario y vecinos"] <- "ConfVec"
+names(base_saludmental_1_)[names(base_saludmental_1_) == "ConfVec"] <- "confianza_vecinos"
+
+names(base_saludmental_1_)
+
+# Renombrar columnas de base_saludmental_1_ con nombres cortos y consistentes
+
+names(base_saludmental)[names(base_saludmental) == "Confianza vecindario y vecinos"] <- "confianza_vecinos"
+names(base_saludmental)[names(base_saludmental) == "Hablar con vecinos antes del confinamiento"] <- "hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Frecuencia hablar con vecinos antes del confinamiento"] <- "freq_hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares"] <- "hablar_amigos_familia"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares antes del confinamiento"] <- "hablar_amigos_familia_antes"
+names(base_saludmental)[names(base_saludmental) == "Considera que usted ha cumplido con las medidas de autocuidado"] <- "cumple_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus familiares han cumplido con las medidas de autocuidado"] <- "familia_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus vecinos han cumplido con las medidas de autocuidado"] <- "vecinos_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Clara]"] <- "info_alcaldia_clara"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Suficiente]"] <- "info_alcaldia_suficiente"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Verídica]"] <- "info_alcaldia_veridica"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Oportuna]"] <- "info_alcaldia_oportuna"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Contradictoria]"] <- "info_alcaldia_contradictoria"
+names(base_saludmental)[names(base_saludmental) == "medio o medios por los que se entera de las decisiones tomadas por la alcaldía"] <- "medios_info_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
+names(base_saludmental)[names(base_saludmental) == "¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?"] <- "info_suficiente_covid"
+names(base_saludmental)[names(base_saludmental) == "Considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID-19 ha sido:"] <- "info_riesgos_covid"
+names(base_saludmental)[names(base_saludmental) == "Diagnosticado con COVID-19"] <- "diagnosticado_covid"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido ansioso o nervioso"] <- "ansioso_nervioso"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido decaído o deprimido"] <- "decaido_deprimido"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido tranquilo"] <- "tranquilo"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, se ha sentido cercano a las personas con las que convive"] <- "cercano_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido interés o placer al hacer las cosas"] <- "interes_actividades"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha tenido problemas para dormir"] <- "problemas_dormir"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, ha tenido desacuerdos con las personas con las que convive"] <- "desacuerdos_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir bebidas alcoholicas"] <- "consumo_alcohol"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de fumar cigarrillos o tabaco"] <- "consumo_tabaco"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva"] <- "consumo_sustancias"
+names(base_saludmental)[names(base_saludmental) == "¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones"] <- "factores_preocupacion"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]"] <- "apoyo_pareja"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]"] <- "apoyo_familia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]"] <- "apoyo_amigos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]"] <- "apoyo_empleador"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]"] <- "apoyo_vecinos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]"] <- "apoyo_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]"] <- "apoyo_gobierno"
+names(base_saludmental)[names(base_saludmental) == "Sexo"] <- "sexo"
+names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
+names(base_saludmental)[names(base_saludmental) == "Rango de edad"] <- "rango_edad"
+names(base_saludmental)[names(base_saludmental) == "¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema"] <- "enfermedades_previas"
+names(base_saludmental)[names(base_saludmental) == "Nivel educativo"] <- "nivel_educativo"
+names(base_saludmental)[names(base_saludmental) == "Localidad de residencia"] <- "localidad"
+names(base_saludmental)[names(base_saludmental) == "Situación laboral"] <- "situacion_laboral"
+names(base_saludmental)[names(base_saludmental) == "condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena"] <- "comodidad_vivienda"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar"] <- "personas_hogar"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 5 años o menos"] <- "ninos_5_menos"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar entre 6 años y 18 años"] <- "ninos_6_18"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar entre 19 años y 65 años"] <- "adultos_19_65"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 65 años o más"] <- "adultos_65_mas"
+names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
+names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
+names(base_saludmental)[names(base_saludmental) == "siente que en su casa usted está expuesto a algún tipo de violencia"] <- "violencia_hogar"
+names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnosticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
+names(base_saludmental)[names(base_saludmental) == "En caso de que la respuesta a la pregunta anterior sea \"\"Sí\"\", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"] <- "continua_tratamiento"
+
