@@ -53,4 +53,5 @@ names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la
 names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
 names(base_saludmental)[names(base_saludmental) == "siente que en su casa usted está expuesto a algún tipo de violencia"] <- "violencia_hogar"
 names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnosticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
-names(base_saludmental)[names(base_saludmental) == "En caso de que la respue
+names(base_saludmental)[names(base_saludmental) == "En caso de que la respue"
+                        

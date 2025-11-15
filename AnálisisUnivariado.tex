@@ -1,0 +1,1243 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Análisis Univariado},
+  pdfauthor={ape2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Análisis Univariado}
+\author{ape2}
+\date{2025-11-14}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{base\_saludmental }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"base\_saludmental.csv"}\NormalTok{, }
+                               \AttributeTok{delim =} \StringTok{";"}\NormalTok{, }\AttributeTok{escape\_double =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 4999 Columns: 54
+## -- Column specification --------------------------------------------------------
+## Delimiter: ";"
+## chr (52): Confianza vecindario y vecinos, Hablar con vecinos antes del confi...
+## dbl  (2): Edad, siente que en su casa usted está expuesto a algún tipo de vi...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(base\_saludmental)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Confianza vecindario y vecinos Hablar con vecinos antes del confinamiento
+##  Length:4999                    Length:4999                               
+##  Class :character               Class :character                          
+##  Mode  :character               Mode  :character                          
+##                                                                           
+##                                                                           
+##                                                                           
+##                                                                           
+##  Frecuencia hablar con vecinos antes del confinamiento
+##  Length:4999                                          
+##  Class :character                                     
+##  Mode  :character                                     
+##                                                       
+##                                                       
+##                                                       
+##                                                       
+##  Hablar con amigos y familiares
+##  Length:4999                   
+##  Class :character              
+##  Mode  :character              
+##                                
+##                                
+##                                
+##                                
+##  Hablar con amigos y familiares antes del confinamiento
+##  Length:4999                                           
+##  Class :character                                      
+##  Mode  :character                                      
+##                                                        
+##                                                        
+##                                                        
+##                                                        
+##  Considera que usted ha cumplido con las medidas de autocuidado
+##  Length:4999                                                   
+##  Class :character                                              
+##  Mode  :character                                              
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##  Considera que sus familiares han cumplido con las medidas de autocuidado
+##  Length:4999                                                             
+##  Class :character                                                        
+##  Mode  :character                                                        
+##                                                                          
+##                                                                          
+##                                                                          
+##                                                                          
+##  Considera que sus vecinos han cumplido con las medidas de autocuidado
+##  Length:4999                                                          
+##  Class :character                                                     
+##  Mode  :character                                                     
+##                                                                       
+##                                                                       
+##                                                                       
+##                                                                       
+##  estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Clara]
+##  Length:4999                                                                                                
+##  Class :character                                                                                           
+##  Mode  :character                                                                                           
+##                                                                                                             
+##                                                                                                             
+##                                                                                                             
+##                                                                                                             
+##  estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Suficiente]
+##  Length:4999                                                                                                    
+##  Class :character                                                                                               
+##  Mode  :character                                                                                               
+##                                                                                                                 
+##                                                                                                                 
+##                                                                                                                 
+##                                                                                                                 
+##  estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Verídica]
+##  Length:4999                                                                                                  
+##  Class :character                                                                                             
+##  Mode  :character                                                                                             
+##                                                                                                               
+##                                                                                                               
+##                                                                                                               
+##                                                                                                               
+##  estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Oportuna]
+##  Length:4999                                                                                                   
+##  Class :character                                                                                              
+##  Mode  :character                                                                                              
+##                                                                                                                
+##                                                                                                                
+##                                                                                                                
+##                                                                                                                
+##  estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Contradictoria]
+##  Length:4999                                                                                                         
+##  Class :character                                                                                                    
+##  Mode  :character                                                                                                    
+##                                                                                                                      
+##                                                                                                                      
+##                                                                                                                      
+##                                                                                                                      
+##  medio o medios por los que se entera de las decisiones tomadas por la alcaldía
+##  Length:4999                                                                   
+##  Class :character                                                              
+##  Mode  :character                                                              
+##                                                                                
+##                                                                                
+##                                                                                
+##                                                                                
+##  ¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?
+##  Length:4999                                                              
+##  Class :character                                                         
+##  Mode  :character                                                         
+##                                                                           
+##                                                                           
+##                                                                           
+##                                                                           
+##  ¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?
+##  Length:4999                                                                    
+##  Class :character                                                               
+##  Mode  :character                                                               
+##                                                                                 
+##                                                                                 
+##                                                                                 
+##                                                                                 
+##  Considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID-19 ha sido:
+##  Length:4999                                                                                                                                     
+##  Class :character                                                                                                                                
+##  Mode  :character                                                                                                                                
+##                                                                                                                                                  
+##                                                                                                                                                  
+##                                                                                                                                                  
+##                                                                                                                                                  
+##  Diagnosticado con COVID-19
+##  Length:4999               
+##  Class :character          
+##  Mode  :character          
+##                            
+##                            
+##                            
+##                            
+##  Durante el periodo de cuarentena se ha sentido ansioso o nervioso
+##  Length:4999                                                      
+##  Class :character                                                 
+##  Mode  :character                                                 
+##                                                                   
+##                                                                   
+##                                                                   
+##                                                                   
+##  Durante el periodo de cuarentena se ha sentido decaído o deprimido
+##  Length:4999                                                       
+##  Class :character                                                  
+##  Mode  :character                                                  
+##                                                                    
+##                                                                    
+##                                                                    
+##                                                                    
+##  Durante el periodo de cuarentena se ha sentido tranquilo
+##  Length:4999                                             
+##  Class :character                                        
+##  Mode  :character                                        
+##                                                          
+##                                                          
+##                                                          
+##                                                          
+##  Durante el periodo de cuarentena, se ha sentido cercano a las personas con las que convive
+##  Length:4999                                                                               
+##  Class :character                                                                          
+##  Mode  :character                                                                          
+##                                                                                            
+##                                                                                            
+##                                                                                            
+##                                                                                            
+##  Durante el periodo de cuarentena ha sentido interés o placer al hacer las cosas
+##  Length:4999                                                                    
+##  Class :character                                                               
+##  Mode  :character                                                               
+##                                                                                 
+##                                                                                 
+##                                                                                 
+##                                                                                 
+##  Durante el periodo de cuarentena ha tenido problemas para dormir
+##  Length:4999                                                     
+##  Class :character                                                
+##  Mode  :character                                                
+##                                                                  
+##                                                                  
+##                                                                  
+##                                                                  
+##  Durante el periodo de cuarentena, ha tenido desacuerdos con las personas con las que convive
+##  Length:4999                                                                                 
+##  Class :character                                                                            
+##  Mode  :character                                                                            
+##                                                                                              
+##                                                                                              
+##                                                                                              
+##                                                                                              
+##  Durante el periodo de cuarentena ha sentido la necesidad de consumir bebidas alcoholicas
+##  Length:4999                                                                             
+##  Class :character                                                                        
+##  Mode  :character                                                                        
+##                                                                                          
+##                                                                                          
+##                                                                                          
+##                                                                                          
+##  Durante el periodo de cuarentena ha sentido la necesidad de fumar cigarrillos o tabaco
+##  Length:4999                                                                           
+##  Class :character                                                                      
+##  Mode  :character                                                                      
+##                                                                                        
+##                                                                                        
+##                                                                                        
+##                                                                                        
+##  Durante el periodo de cuarentena ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva
+##  Length:4999                                                                                             
+##  Class :character                                                                                        
+##  Mode  :character                                                                                        
+##                                                                                                          
+##                                                                                                          
+##                                                                                                          
+##                                                                                                          
+##  ¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones
+##  Length:4999                                                                                                                                       
+##  Class :character                                                                                                                                  
+##  Mode  :character                                                                                                                                  
+##                                                                                                                                                    
+##                                                                                                                                                    
+##                                                                                                                                                    
+##                                                                                                                                                    
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]
+##  Length:4999                                                                                                                        
+##  Class :character                                                                                                                   
+##  Mode  :character                                                                                                                   
+##                                                                                                                                     
+##                                                                                                                                     
+##                                                                                                                                     
+##                                                                                                                                     
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]
+##  Length:4999                                                                                                                         
+##  Class :character                                                                                                                    
+##  Mode  :character                                                                                                                    
+##                                                                                                                                      
+##                                                                                                                                      
+##                                                                                                                                      
+##                                                                                                                                      
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]
+##  Length:4999                                                                                                                         
+##  Class :character                                                                                                                    
+##  Mode  :character                                                                                                                    
+##                                                                                                                                      
+##                                                                                                                                      
+##                                                                                                                                      
+##                                                                                                                                      
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]
+##  Length:4999                                                                                                                                               
+##  Class :character                                                                                                                                          
+##  Mode  :character                                                                                                                                          
+##                                                                                                                                                            
+##                                                                                                                                                            
+##                                                                                                                                                            
+##                                                                                                                                                            
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]
+##  Length:4999                                                                                                                          
+##  Class :character                                                                                                                     
+##  Mode  :character                                                                                                                     
+##                                                                                                                                       
+##                                                                                                                                       
+##                                                                                                                                       
+##                                                                                                                                       
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]
+##  Length:4999                                                                                                                          
+##  Class :character                                                                                                                     
+##  Mode  :character                                                                                                                     
+##                                                                                                                                       
+##                                                                                                                                       
+##                                                                                                                                       
+##                                                                                                                                       
+##  ¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]
+##  Length:4999                                                                                                                                   
+##  Class :character                                                                                                                              
+##  Mode  :character                                                                                                                              
+##                                                                                                                                                
+##                                                                                                                                                
+##                                                                                                                                                
+##                                                                                                                                                
+##      Sexo                Edad        Rango de edad     
+##  Length:4999        Min.   :  0.00   Length:4999       
+##  Class :character   1st Qu.: 32.00   Class :character  
+##  Mode  :character   Median : 41.00   Mode  :character  
+##                     Mean   : 41.71                     
+##                     3rd Qu.: 52.00                     
+##                     Max.   :548.00                     
+##                     NA's   :14                         
+##  ¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema
+##  Length:4999                                                                                                                                                                                                                               
+##  Class :character                                                                                                                                                                                                                          
+##  Mode  :character                                                                                                                                                                                                                          
+##                                                                                                                                                                                                                                            
+##                                                                                                                                                                                                                                            
+##                                                                                                                                                                                                                                            
+##                                                                                                                                                                                                                                            
+##  Nivel educativo    Localidad de residencia Situación laboral 
+##  Length:4999        Length:4999             Length:4999       
+##  Class :character   Class :character        Class :character  
+##  Mode  :character   Mode  :character        Mode  :character  
+##                                                               
+##                                                               
+##                                                               
+##                                                               
+##  condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena
+##  Length:4999                                                                                             
+##  Class :character                                                                                        
+##  Mode  :character                                                                                        
+##                                                                                                          
+##                                                                                                          
+##                                                                                                          
+##                                                                                                          
+##  Personas en el hogar Personas en el hogar 5 años o menos
+##  Length:4999          Length:4999                        
+##  Class :character     Class :character                   
+##  Mode  :character     Mode  :character                   
+##                                                          
+##                                                          
+##                                                          
+##                                                          
+##  Personas en el hogar  entre 6 años y 18 años
+##  Length:4999                                 
+##  Class :character                            
+##  Mode  :character                            
+##                                              
+##                                              
+##                                              
+##                                              
+##  Personas en el hogar  entre 19 años y 65 años
+##  Length:4999                                  
+##  Class :character                             
+##  Mode  :character                             
+##                                               
+##                                               
+##                                               
+##                                               
+##  Personas en el hogar  65 años o más
+##  Length:4999                        
+##  Class :character                   
+##  Mode  :character                   
+##                                     
+##                                     
+##                                     
+##                                     
+##  ¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?
+##  Length:4999                                                                           
+##  Class :character                                                                      
+##  Mode  :character                                                                      
+##                                                                                        
+##                                                                                        
+##                                                                                        
+##                                                                                        
+##  frecuencia actividad física
+##  Length:4999                
+##  Class :character           
+##  Mode  :character           
+##                             
+##                             
+##                             
+##                             
+##  siente que en su casa usted está expuesto a algún tipo de violencia
+##  Min.   :1.000                                                      
+##  1st Qu.:1.000                                                      
+##  Median :1.000                                                      
+##  Mean   :1.375                                                      
+##  3rd Qu.:1.000                                                      
+##  Max.   :5.000                                                      
+##  NA's   :13                                                         
+##  ¿Usted o alguna de las personas con las que vive ha sido diagnósticado con alguna enfermedad de salud mental que requiera tratamiento?
+##  Length:4999                                                                                                                           
+##  Class :character                                                                                                                      
+##  Mode  :character                                                                                                                      
+##                                                                                                                                        
+##                                                                                                                                        
+##                                                                                                                                        
+##                                                                                                                                        
+##  En caso de que la respuesta a la pregunta anterior sea ""Sí"", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?
+##  Length:4999                                                                                                                         
+##  Class :character                                                                                                                    
+##  Mode  :character                                                                                                                    
+##                                                                                                                                      
+##                                                                                                                                      
+##                                                                                                                                      
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Renombrar columnas de base\_saludmental con nombres cortos y consistentes}
+
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Confianza vecindario y vecinos"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"confianza\_vecinos"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Hablar con vecinos antes del confinamiento"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"hablar\_vecinos\_antes"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Frecuencia hablar con vecinos antes del confinamiento"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"freq\_hablar\_vecinos\_antes"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Hablar con amigos y familiares"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"hablar\_amigos\_familia"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Hablar con amigos y familiares antes del confinamiento"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"hablar\_amigos\_familia\_antes"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Considera que usted ha cumplido con las medidas de autocuidado"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"cumple\_autocuidado"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Considera que sus familiares han cumplido con las medidas de autocuidado"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"familia\_autocuidado"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Considera que sus vecinos han cumplido con las medidas de autocuidado"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"vecinos\_autocuidado"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID{-}19 [Clara]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_alcaldia\_clara"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID{-}19 [Suficiente]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_alcaldia\_suficiente"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID{-}19 [Verídica]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_alcaldia\_veridica"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID{-}19 [Oportuna]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_alcaldia\_oportuna"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID{-}19 [Contradictoria]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_alcaldia\_contradictoria"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"medio o medios por los que se entera de las decisiones tomadas por la alcaldía"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"medios\_info\_alcaldia"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"sabe\_actuar\_covid"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿Cree que cuenta con la información suficiente para conocer que es el COVID{-}19?"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_suficiente\_covid"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID{-}19 ha sido:"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"info\_riesgos\_covid"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Diagnosticado con COVID{-}19"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"diagnosticado\_covid"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena se ha sentido ansioso o nervioso"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ansioso\_nervioso"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena se ha sentido decaído o deprimido"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"decaido\_deprimido"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena se ha sentido tranquilo"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"tranquilo"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena, se ha sentido cercano a las personas con las que convive"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"cercano\_convivientes"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena ha sentido interés o placer al hacer las cosas"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"interes\_actividades"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena ha tenido problemas para dormir"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"problemas\_dormir"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena, ha tenido desacuerdos con las personas con las que convive"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"desacuerdos\_convivientes"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena ha sentido la necesidad de consumir bebidas alcoholicas"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"consumo\_alcohol"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena ha sentido la necesidad de fumar cigarrillos o tabaco"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"consumo\_tabaco"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Durante el periodo de cuarentena ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"consumo\_sustancias"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"factores\_preocupacion"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_pareja"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_familia"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_amigos"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_empleador"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_vecinos"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_alcaldia"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"apoyo\_gobierno"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Sexo"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"sexo"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Edad"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"edad"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Rango de edad"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"rango\_edad"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"enfermedades\_previas"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Nivel educativo"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"nivel\_educativo"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Localidad de residencia"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"localidad"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Situación laboral"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"situacion\_laboral"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"comodidad\_vivienda"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Personas en el hogar"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"personas\_hogar"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Personas en el hogar 5 años o menos"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ninos\_5\_menos"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Personas en el hogar entre 6 años y 18 años"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ninos\_6\_18"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Personas en el hogar entre 19 años y 65 años"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"adultos\_19\_65"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"Personas en el hogar 65 años o más"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"adultos\_65\_mas"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"expresa\_sentimientos"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"frecuencia actividad física"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"freq\_actividad\_fisica"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"siente que en su casa usted está expuesto a algún tipo de violencia"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"violencia\_hogar"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"¿Usted o alguna de las personas con las que vive ha sido diagnosticado con alguna enfermedad de salud mental que requiera tratamiento?"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"diagnostico\_salud\_mental"}
+\FunctionTok{names}\NormalTok{(base\_saludmental)[}\FunctionTok{names}\NormalTok{(base\_saludmental) }\SpecialCharTok{==} \StringTok{"En caso de que la respuesta a la pregunta anterior sea }\SpecialCharTok{\textbackslash{}"\textbackslash{}"}\StringTok{Sí}\SpecialCharTok{\textbackslash{}"\textbackslash{}"}\StringTok{, ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"continua\_tratamiento"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Lista de variables a analizar}
+\NormalTok{variables }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"confianza\_vecinos"}\NormalTok{, }\StringTok{"hablar\_vecinos\_antes"}\NormalTok{, }\StringTok{"freq\_hablar\_vecinos\_antes"}\NormalTok{,}
+  \StringTok{"hablar\_amigos\_familia"}\NormalTok{, }\StringTok{"hablar\_amigos\_familia\_antes"}\NormalTok{,}
+  \StringTok{"cumple\_autocuidado"}\NormalTok{, }\StringTok{"familia\_autocuidado"}\NormalTok{, }\StringTok{"vecinos\_autocuidado"}\NormalTok{,}
+  \StringTok{"info\_alcaldia\_clara"}\NormalTok{, }\StringTok{"info\_alcaldia\_suficiente"}\NormalTok{, }\StringTok{"info\_alcaldia\_veridica"}\NormalTok{,}
+  \StringTok{"info\_alcaldia\_oportuna"}\NormalTok{, }\StringTok{"info\_alcaldia\_contradictoria"}\NormalTok{,}
+  \StringTok{"medios\_info\_alcaldia"}\NormalTok{, }\StringTok{"sabe\_actuar\_covid"}\NormalTok{, }\StringTok{"info\_suficiente\_covid"}\NormalTok{,}
+  \StringTok{"info\_riesgos\_covid"}\NormalTok{, }\StringTok{"diagnosticado\_covid"}
+\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (var }\ControlFlowTok{in}\NormalTok{ variables) \{}
+  
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"\#\#\# Variable:"}\NormalTok{, var, }\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  
+  \CommentTok{\# Verificar si existe}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{var }\SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(base\_saludmental)) \{}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"La variable no existe en el dataset.}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \ControlFlowTok{next}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Tabla de frecuencias}
+\NormalTok{  tabla }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(base\_saludmental[[var]], }\AttributeTok{useNA =} \StringTok{"ifany"}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(tabla) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"No hay datos para esta variable.}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \ControlFlowTok{next}
+\NormalTok{  \}}
+  
+\NormalTok{  tabla\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(tabla)}
+  \FunctionTok{names}\NormalTok{(tabla\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Categoria"}\NormalTok{, }\StringTok{"Frecuencia"}\NormalTok{)}
+  
+  \FunctionTok{print}\NormalTok{(tabla\_df)}
+  
+  \CommentTok{\# Solo graficar si tiene \textless{}=10 categorías}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{nrow}\NormalTok{(tabla\_df) }\SpecialCharTok{\textless{}=} \DecValTok{10}\NormalTok{) \{}
+    
+    \CommentTok{\# Crear gráfico}
+\NormalTok{    bp }\OtherTok{\textless{}{-}} \FunctionTok{barplot}\NormalTok{(}
+\NormalTok{      tabla\_df}\SpecialCharTok{$}\NormalTok{Frecuencia,}
+      \AttributeTok{names.arg =}\NormalTok{ tabla\_df}\SpecialCharTok{$}\NormalTok{Categoria,}
+      \AttributeTok{main =}\NormalTok{ var,}
+      \AttributeTok{col =} \StringTok{"steelblue"}\NormalTok{,}
+      \AttributeTok{las =} \DecValTok{2}\NormalTok{,}
+      \AttributeTok{cex.names =} \FloatTok{0.8}
+\NormalTok{    )}
+    
+    \CommentTok{\# AGREGAR VALORES ENCIMA DE CADA BARRA}
+    \FunctionTok{text}\NormalTok{(}
+      \AttributeTok{x =}\NormalTok{ bp,}
+      \AttributeTok{y =}\NormalTok{ tabla\_df}\SpecialCharTok{$}\NormalTok{Frecuencia,}
+      \AttributeTok{labels =}\NormalTok{ tabla\_df}\SpecialCharTok{$}\NormalTok{Frecuencia,}
+      \AttributeTok{pos =} \DecValTok{3}\NormalTok{,           }\CommentTok{\# arriba de la barra}
+      \AttributeTok{cex =} \FloatTok{0.9}
+\NormalTok{    )}
+    
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"Demasiadas categorías para graficar.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ### Variable: confianza_vecinos 
+## 
+##    Categoria Frecuencia
+## 1    Algunos       2415
+## 2 La mayoría       1464
+## 3    Ninguno        933
+## 4      Todos        182
+## 5       <NA>          5
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{verbatim}
+## ### Variable: hablar_vecinos_antes 
+## 
+##                   Categoria Frecuencia
+## 1 Algunas veces a la semana        564
+## 2      Algunas veces al mes       1412
+## 3       Casi todos los días         75
+## 4                      Nada       1899
+## 5            No está seguro         65
+## 6                   Una vez        978
+## 7                      <NA>          6
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{verbatim}
+## ### Variable: freq_hablar_vecinos_antes 
+## 
+##                   Categoria Frecuencia
+## 1 Algunas veces a la semana       1213
+## 2      Algunas veces al mes       1667
+## 3       Casi todos los días        450
+## 4                      Nada       1032
+## 5            No está seguro         70
+## 6                   Una vez        557
+## 7                      <NA>         10
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+\begin{verbatim}
+## ### Variable: hablar_amigos_familia 
+## 
+##                   Categoria Frecuencia
+## 1 Algunas veces a la semana       1499
+## 2      Algunas veces al mes        597
+## 3       Casi todos los días       2765
+## 4                      Nada         52
+## 5            No está seguro         10
+## 6                   Una vez         67
+## 7                      <NA>          9
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-4.pdf}
+
+\begin{verbatim}
+## ### Variable: hablar_amigos_familia_antes 
+## 
+##                   Categoria Frecuencia
+## 1 Algunas veces a la semana       1523
+## 2      Algunas veces al mes        494
+## 3       Casi todos los días       2900
+## 4                      Nada         16
+## 5            No está seguro          8
+## 6                   Una vez         51
+## 7                      <NA>          7
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-5.pdf}
+
+\begin{verbatim}
+## ### Variable: cumple_autocuidado 
+## 
+##      Categoria Frecuencia
+## 1       1 Nada         20
+## 2            2         87
+## 3            3        428
+## 4            4       1209
+## 5 5 Totalmente       3254
+## 6         <NA>          1
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-6.pdf}
+
+\begin{verbatim}
+## ### Variable: familia_autocuidado 
+## 
+##      Categoria Frecuencia
+## 1       1 Nada         26
+## 2            2        170
+## 3            3        652
+## 4            4       1695
+## 5 5 Totalmente       2455
+## 6         <NA>          1
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-7.pdf}
+
+\begin{verbatim}
+## ### Variable: vecinos_autocuidado 
+## 
+##      Categoria Frecuencia
+## 1       1 Nada        339
+## 2            2        977
+## 3            3       1708
+## 4            4       1472
+## 5 5 Totalmente        502
+## 6         <NA>          1
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-8.pdf}
+
+\begin{verbatim}
+## ### Variable: info_alcaldia_clara 
+## 
+## La variable no existe en el dataset.
+## 
+## ### Variable: info_alcaldia_suficiente 
+## 
+##   Categoria Frecuencia
+## 1        No       1648
+## 2   No sabe        539
+## 3        Sí       2811
+## 4      <NA>          1
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-9.pdf}
+
+\begin{verbatim}
+## ### Variable: info_alcaldia_veridica 
+## 
+##   Categoria Frecuencia
+## 1        No        946
+## 2   No sabe       1203
+## 3        Sí       2849
+## 4      <NA>          1
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-10.pdf}
+
+\begin{verbatim}
+## ### Variable: info_alcaldia_oportuna 
+## 
+## La variable no existe en el dataset.
+## 
+## ### Variable: info_alcaldia_contradictoria 
+## 
+## La variable no existe en el dataset.
+## 
+## ### Variable: medios_info_alcaldia 
+## 
+##                                                                                                                                                                                                                                                    Categoria
+## 1                                                                                                                                                                                                                               Administración del conjunto.
+## 2                                                                                                                                                                                                                                                    Colegio
+## 3                                                                                                                                                                                                                                         correo electronico
+## 4                                                                                                                                                                                                                             GRUPO DE PRENSA ADMINISTRACIÓN
+## 5                                                                                                                                                                                                                           Hago parte de la administración.
+## 6                                                                                                                                                                                                                                                    Ninguno
+## 7                                                                                                                                                                                                     Ninguno oficial, casi siempre chismes o especulaciones
+## 8                                                                                                                                                                                                                                         NOTICIAS EN LA WEB
+## 9                                                                                                                                                                                                         Otras personas (vecinos, familiares, amigos, etc.)
+## 10                                                                                                                                                                                                          Páginas oficiales de la Administración Distrital
+## 11                                                                                                                                                                                    Páginas oficiales de la Administración Distrital, correo institucional
+## 12                                                                                                                                                                                 Páginas oficiales de la Administración Distrital, Grupos Inter Religiosos
+## 13                                                                                                                                                                                            Páginas oficiales de la Administración Distrital, Jhon Hopkins
+## 14                                                                                                                                                                                            Páginas oficiales de la Administración Distrital, Noticias web
+## 15                                                                                                                                                      Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 16                                                                                                                                                                                                                              Pantalla para campaña futura
+## 17                                                                                                                                                                                                                                                Periódicos
+## 18                                                                                                                                                                                                            Periódicos, Comunicación oficial de la entidad
+## 19                                                                                                                                                                                                                            Periódicos, correo electrónico
+## 20                                                                                                                                                                                                                          Periódicos, Correo institucional
+## 21                                                                                                                                                                                     Periódicos, Medios internacionales porqueno confio en los colombianos
+## 22                                                                                                                                                                                            Periódicos, Otras personas (vecinos, familiares, amigos, etc.)
+## 23                                                                                                                                                                                              Periódicos, Páginas oficiales de la Administración Distrital
+## 24                                                                                                                                          Periódicos, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 25                                                                                                                                                                                                                                         Periódicos, Radio
+## 26                                                                                                                                                                                     Periódicos, Radio, Otras personas (vecinos, familiares, amigos, etc.)
+## 27                                                                                                                                                                                       Periódicos, Radio, Páginas oficiales de la Administración Distrital
+## 28                                                                                                                                                                       Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 29                                                                                                                   Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 30                                                                                                                     Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 31                                                                 Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 32                                                                                                                                                                              Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 33                                                                                                                                                       Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Los correos oficiales
+## 34                                                                                                                          Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 35                                                                                                                            Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 36                                                                        Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 37                                                                                                                                                      Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Periódicos en internet
+## 38                                                                                                                                                                                Por intermedio del programa de televisión diario del Presidente Ivan Duque
+## 39                                                                                                                                                                                                                                                     Radio
+## 40                                                                                                                                                                                                 Radio, Otras personas (vecinos, familiares, amigos, etc.)
+## 41                                                                                                                                                                                                   Radio, Páginas oficiales de la Administración Distrital
+## 42                                                                                                                                               Radio, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 43                                                                                                                                                                                   Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 44                                                                                                                               Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 45                                                                                                                                 Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 46                                                                                                            Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correo intitucional
+## 47                                                                             Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 48                                                                                                                                                                          Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Vecinos
+## 49                                                                                                                                                                                          Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 50                                                                                                                                                                      Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Chat de la entidad
+## 51                                                                                                                                                  Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Grupo de servidores públicos de la SGD
+## 52                                                                                                                                                            Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Grupo WhatsApp de la oficina
+## 53                                                                                                                                                    Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Información que nos envía la entidad
+## 54                                                                                                                                                                       Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Mensajes de texto
+## 55                                                                                                                                                              Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), notificaciones de noticias
+## 56                                                                                                                                      Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 57                                                                                        Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), información interna de entidad donde trabajo
+## 58                                                                                                                 Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Llamadas colsanitas
+## 59                                                                                                                           Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Navegador
+## 60                                                                                                                                                         Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas de diarios por internet
+## 61                                                                                                                                                                     Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), PÁGINAS DE NOTICIAS
+## 62                                                                                                                                        Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 63                                                                                                Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Comicaciones al interior de la entidad
+## 64                                                                                                                  Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correo institucional
+## 65                                                                                                                     Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correo prensa SED
+## 66                                                                                                                       Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Institucionales
+## 67                                                                                    Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 68                                                                                                                               Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Twitter
+## 69                                                                                                                               Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, youtube
+## 70                                                                                                                                                                    Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Periódicos digitales
+## 71                                                                                                                                                          Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Periódicos y revistas en línea
+## 72                                                                                                                                           Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), plataforma independientes de prensa virtuales
+## 73                                                                                                                                                                                                                                                Televisión
+## 74                                                                                                                                                                                               Televisión, `programa prevención y acción de la presidencia
+## 75                                                                                                                                                                                                                          Televisión, correo institucional
+## 76                                                                                                                                                                                                                          Televisión, Correo institucional
+## 77                                                                                                                                                                                                       Televisión, Empresa a través de reuniones virtuales
+## 78                                                                                                                                                                                                                                       Televisión, Ninguno
+## 79                                                                                                                                                                                                                            Televisión, Noticias en Google
+## 80                                                                                                                                                                                                                         Televisión, Noticias google y msm
+## 81                                                                                                                                                                                            Televisión, Otras personas (vecinos, familiares, amigos, etc.)
+## 82                                                                                                                                                                     Televisión, Otras personas (vecinos, familiares, amigos, etc.), Navegador de Internet
+## 83                                                                                                                                                                                              Televisión, Página Web de periódicos de circulación nacional
+## 84                                                                                                                                                                                              Televisión, Páginas oficiales de la Administración Distrital
+## 85                                                                                                                                                                          Televisión, Páginas oficiales de la Administración Distrital, Chat de la oficina
+## 86                                                                                                                                         Televisión, Páginas oficiales de la Administración Distrital, COMUNICADOS DE LA SECRETARIA DISTRITAL DE MOVILIDAD
+## 87                                                                                                                                                                        Televisión, Páginas oficiales de la Administración Distrital, Correo institucional
+## 88                                                                                                                                                                        Televisión, Páginas oficiales de la Administración Distrital, CORREO INSTITUCIONAL
+## 89                                                                                                                                             Televisión, Páginas oficiales de la Administración Distrital, Correo institucional, oficina de comunicaciones
+## 90                                                                                                                                                    Televisión, Páginas oficiales de la Administración Distrital, De la entidad Distrital donde yo trabajo
+## 91                                                                                                                                                            Televisión, Páginas oficiales de la Administración Distrital, DECRETOS, MEDIOS INSTITUCIONALES
+## 92                                                                                                                                                         Televisión, Páginas oficiales de la Administración Distrital, Información comunicada a la entidad
+## 93                                                                                                                                                                                    Televisión, Páginas oficiales de la Administración Distrital, internet
+## 94                                                                                                                                                                  Televisión, Páginas oficiales de la Administración Distrital, Internet no redes sociales
+## 95                                                                                                                                          Televisión, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 96                                                                                                                     Televisión, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), Difusion por correo
+## 97                                                                                                                                                                              Televisión, Páginas oficiales de la Administración Distrital, Por la empresa
+## 98                                                                                                                                                                                                                                    Televisión, Periódicos
+## 99                                                                                                                                                                                Televisión, Periódicos, Otras personas (vecinos, familiares, amigos, etc.)
+## 100                                                                                                                                                                                 Televisión, Periódicos, Páginas oficiales de la Administración Distrital
+## 101                                                                                                                                                                        Televisión, Periódicos, Páginas oficiales de la Administración Distrital, Correos
+## 102                                                                                                                                                      Televisión, Periódicos, Páginas oficiales de la Administración Distrital, La intranet de la entidad
+## 103                                                                                                                             Televisión, Periódicos, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 104                                                                                                                                                                                                                            Televisión, Periódicos, Radio
+## 105                                                                                                                                                                        Televisión, Periódicos, Radio, Otras personas (vecinos, familiares, amigos, etc.)
+## 106                                                                                                                                                                          Televisión, Periódicos, Radio, Páginas oficiales de la Administración Distrital
+## 107                                                                                                                                              Televisión, Periódicos, Radio, Páginas oficiales de la Administración Distrital, Oms, artículos científicos
+## 108                                                                                                                      Televisión, Periódicos, Radio, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 109                                                                                                                                                          Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 110                                                   Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), El sistema de gestion de la empresa se ha encargado de difundir dicha informacion a traves del correo
+## 111                                                                                                                                                Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Estudios
+## 112                                                                                                      Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 113                                                                         Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas Internacionales de web- Correo electrónico - Noticieros internacionales
+## 114                                                                                                        Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 115                                                                                        Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, En mi trabajo.
+## 116                                                    Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 117                                           Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), Ninguno
+## 118 Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), Ninguno, Facebook, twitter, instagram, linked-in.
+## 119     Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), todas los medios anteriores y permanentemente
+## 120                                                                 Televisión, Periódicos, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Por ser servidor público del Distrito
+## 121                                                                                                                                                                 Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 122                                                                                                                                         Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Institución de Trabajo
+## 123                                                                                                             Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 124                                                                                                               Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 125                                                                                  Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, A través de nuestra entidad
+## 126                                                                                    Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, INSTITUCION DONDE TRABAJO
+## 127                                                           Televisión, Periódicos, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 128                                                                                                                                                                                                               Televisión, Por comunicados de mi entidad.
+## 129                                                                                                                                                                                                                               Televisión, por mi hermano
+## 130                                                                                                                                                                                                                                        Televisión, Radio
+## 131                                                                                                                                                                                    Televisión, Radio, Otras personas (vecinos, familiares, amigos, etc.)
+## 132                                                                                                                                                                          Televisión, Radio, Otras personas (vecinos, familiares, amigos, etc.), watsapps
+## 133                                                                                                                                                                                      Televisión, Radio, Páginas oficiales de la Administración Distrital
+## 134                                                                                                                                                                  Televisión, Radio, Páginas oficiales de la Administración Distrital, noticias virtuales
+## 135                                                                                                                                  Televisión, Radio, Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 136                                                                                                                                                                                                            Televisión, Radio, Presidente de la República
+## 137                                                                                                                                                                      Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 138                                                                                                                                           Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Chat del grupo de trabajo
+## 139                                                                                                                                                     Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), internacionales
+## 140                                                                                                                                                  Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Noticias de Google
+## 141                                                                                                                  Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 142                                                                                           Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Compañeros de Oficina
+## 143                                                                                                       Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), voz a voz
+## 144                                                                                                                    Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 145                                                          Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Depattamento Administrativo del Servicio Civil Distrital
+## 146                                                                                                              Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, EAAB
+## 147                                                                                                Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Grupos de Whatsapp
+## 148                                                                                                           Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Ninguno
+## 149                                                                Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 150                                                                                                                                                      Televisión, Radio, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Por la entidad
+## 151                                                                                                                                                                             Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp)
+## 152                                                                                                                                                   Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp),  Comentarios de terceros
+## 153                                                                                                                               Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), circulares emitidas a los servicios de salud
+## 154                                                                                                                                         Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Comunicación interna de la Entidad
+## 155                                                                                                                                                         Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), correo electronico
+## 156                                                                                                                                           Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Correo electrónico institucional
+## 157                                                                                                                     Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), correo institucional Secretaria Distrital de Movilidad
+## 158                                                                                                                                                                 Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), El trabajo
+## 159                                                                                                                                                                    Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Empresa
+## 160                                                                                                                         Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.)
+## 161                                                                                                   Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Correo institucional
+## 162                                                                                                             Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), La empresa
+## 163                                                                                       Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Ninguno, compañeros y familiares
+## 164                                                                                                               Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Otras personas (vecinos, familiares, amigos, etc.), Whatsapp
+## 165                                                                                                                           Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital
+## 166                                                                                                            Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Canal Capital
+## 167                                                                                                    Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Compañeros de trabajo
+## 168                                                                                                       Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correo empresarial
+## 169                                                                                                 Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correo Institucional SED
+## 170                                                                                                     Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Correos electrónicos
+## 171                                                                                                       Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, emisiones radiales
+## 172                                                   Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, En Bogotá por correo electrónico de la Direccion Corporativa de la SDA
+## 173                                                                                                    Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, ENTIDAD DONDE TRABAJO
+## 174                                                                                                Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Grupo lideres Distritales
+## 175                                                                                              Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Grupos de Wtt de la oficina
+## 176                                                                                   Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, MENSAJES DE LA SECRETARIA DE EDUCACION
+## 177                                                                       Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.)
+## 178                                             Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), Como funcionario publico
+## 179                                   Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Otras personas (vecinos, familiares, amigos, etc.), Oficina comunicaciones del trabajo
+## 180                                                                                                      Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Páginas de noticias
+## 181                                                                                        Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Perifoneo de parte de la Alcaldia
+## 182                                                                Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, Redes sociales oficiales de la Alcaldía y las Secretarías
+## 183                                                                                                                  Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Páginas oficiales de la Administración Distrital, TRABAJO
+## 184                                                                                                                                         Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), POR LA COMUNICACIÓN CON LA OFICINA
+## 185                                                                                                                                                       Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Reuniones de trabajo
+## 186                                                                                                                                                                    Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Trabajo
+## 187                                                                                                                                                                  Televisión, Redes sociales (Twitter, Facebook, Instagram, Youtube, Whatsapp), Vos a voz
+## 188                                                                                                                                                                                                                             Televisión, sesiones concejo
+## 189                                                                                                                                                                                                                   Televisión, trabajo para canal capital
+## 190                                                                                                                                                                                                                                       Televisión, Tuiter
+## 191                                                                                                                                                                                                                                Televisión, y el CoronAPP
+## 192                                                                                                                                                                                                                          ULTIMAS NOTICIAS COLOMBIA PULZO
+## 193                                                                                                                                                                                                                                                   Wasapt
+## 194                                                                                                                                                                                                                                                     <NA>
+##     Frecuencia
+## 1            1
+## 2            1
+## 3            1
+## 4            1
+## 5            1
+## 6           28
+## 7            1
+## 8            1
+## 9           33
+## 10          71
+## 11           1
+## 12           1
+## 13           1
+## 14           1
+## 15           3
+## 16           1
+## 17          23
+## 18           1
+## 19           1
+## 20           1
+## 21           1
+## 22           6
+## 23          16
+## 24           1
+## 25           8
+## 26           1
+## 27           4
+## 28          14
+## 29           1
+## 30           9
+## 31           3
+## 32          30
+## 33           1
+## 34           7
+## 35          28
+## 36           5
+## 37           1
+## 38           1
+## 39          33
+## 40           1
+## 41          11
+## 42           2
+## 43          40
+## 44           5
+## 45          34
+## 46           1
+## 47           8
+## 48           1
+## 49         447
+## 50           1
+## 51           1
+## 52           1
+## 53           1
+## 54           1
+## 55           1
+## 56         100
+## 57           1
+## 58           1
+## 59           1
+## 60           1
+## 61           1
+## 62         229
+## 63           1
+## 64           1
+## 65           1
+## 66           1
+## 67          54
+## 68           1
+## 69           1
+## 70           1
+## 71           1
+## 72           1
+## 73         283
+## 74           1
+## 75           1
+## 76           1
+## 77           1
+## 78           1
+## 79           1
+## 80           1
+## 81          47
+## 82           1
+## 83           1
+## 84         108
+## 85           1
+## 86           1
+## 87           1
+## 88           1
+## 89           1
+## 90           1
+## 91           1
+## 92           1
+## 93           1
+## 94           1
+## 95           6
+## 96           1
+## 97           1
+## 98          43
+## 99           7
+## 100         29
+## 101          1
+## 102          1
+## 103          3
+## 104         25
+## 105          6
+## 106         28
+## 107          1
+## 108          3
+## 109         74
+## 110          1
+## 111          1
+## 112         25
+## 113          1
+## 114        133
+## 115          1
+## 116         72
+## 117          1
+## 118          1
+## 119          1
+## 120          1
+## 121        104
+## 122          1
+## 123         27
+## 124         77
+## 125          1
+## 126          1
+## 127         24
+## 128          1
+## 129          1
+## 130         66
+## 131          9
+## 132          1
+## 133         60
+## 134          1
+## 135          9
+## 136          1
+## 137        196
+## 138          1
+## 139          1
+## 140          1
+## 141         87
+## 142          1
+## 143          1
+## 144        171
+## 145          1
+## 146          1
+## 147          1
+## 148          1
+## 149         57
+## 150          2
+## 151        861
+## 152          1
+## 153          1
+## 154          1
+## 155          1
+## 156          1
+## 157          1
+## 158          1
+## 159          1
+## 160        279
+## 161          1
+## 162          1
+## 163          1
+## 164          1
+## 165        530
+## 166          1
+## 167          1
+## 168          1
+## 169          1
+## 170          1
+## 171          1
+## 172          1
+## 173          1
+## 174          1
+## 175          1
+## 176          1
+## 177        162
+## 178          1
+## 179          1
+## 180          1
+## 181          1
+## 182          1
+## 183          1
+## 184          1
+## 185          1
+## 186          1
+## 187          1
+## 188          1
+## 189          1
+## 190          1
+## 191          1
+## 192          1
+## 193          1
+## 194          2
+## Demasiadas categorías para graficar.
+## ### Variable: sabe_actuar_covid 
+## 
+##   Categoria Frecuencia
+## 1        No        735
+## 2        Sí       4243
+## 3      <NA>         21
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-11.pdf}
+
+\begin{verbatim}
+## ### Variable: info_suficiente_covid 
+## 
+##   Categoria Frecuencia
+## 1        No        859
+## 2        Sí       4126
+## 3      <NA>         14
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-12.pdf}
+
+\begin{verbatim}
+## ### Variable: info_riesgos_covid 
+## 
+##    Categoria Frecuencia
+## 1  Exagerada        482
+## 2 Minimizada        759
+## 3    Precisa       3747
+## 4       <NA>         11
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-13.pdf}
+
+\begin{verbatim}
+## ### Variable: diagnosticado_covid 
+## 
+##   Categoria Frecuencia
+## 1        No       3826
+## 2        Sí       1158
+## 3      <NA>         15
+\end{verbatim}
+
+\includegraphics{AnálisisUnivariado_files/figure-latex/unnamed-chunk-2-14.pdf}
+
+\end{document}

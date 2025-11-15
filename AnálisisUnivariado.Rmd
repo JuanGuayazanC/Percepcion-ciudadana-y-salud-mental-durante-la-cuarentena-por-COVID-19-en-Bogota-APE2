@@ -1,8 +1,12 @@
 ---
 title: "Análisis Univariado"
-author: ape2
+author: "ape2"
 date: "2025-11-14"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -78,11 +82,6 @@ names(base_saludmental)[names(base_saludmental) == "En caso de que la respuesta 
 ```
 
 ```{r , echo=TRUE}
-
-```
-
-```{r , echo=TRUE}
-# Crear un vector con los nombres de las columnas que quieres analizar
 variables <- c(
   "confianza_vecinos", "hablar_vecinos_antes", "freq_hablar_vecinos_antes",
   "hablar_amigos_familia", "hablar_amigos_familia_antes",
@@ -91,51 +90,58 @@ variables <- c(
   "info_alcaldia_oportuna", "info_alcaldia_contradictoria",
   "medios_info_alcaldia", "sabe_actuar_covid", "info_suficiente_covid",
   "info_riesgos_covid", "diagnosticado_covid"
-  # puedes agregar más columnas aquí
 )
+```
 
-
+```{r , echo=TRUE}
 for (var in variables) {
-cat("### Variable:", var, "\n\n")
-
-# Revisar si la variable existe en el dataset
-
-if (!var %in% names(base_saludmental)) {
-cat("La variable no existe en el dataset.\n\n")
-next
-}
-
-# Crear tabla de frecuencias
-
-tabla <- table(base_saludmental[[var]], useNA = "ifany")
-
-# Revisar si la tabla tiene más de 0 elementos
-
-if (length(tabla) == 0) {
-cat("No hay datos para esta variable.\n\n")
-next
-}
-
-# Convertir a data frame solo si hay más de 1 categoría
-
-tabla_df <- as.data.frame(tabla)
-
-if (ncol(tabla_df) == 1) {
-names(tabla_df) <- "Frecuencia"
-} else {
-names(tabla_df) <- c("Categoría", "Frecuencia")
-}
-
-print(tabla_df)
-
-# Graficar si hay 10 o menos categorías
-
-if (nrow(tabla_df) <= 10) {
-barplot(tabla_df$Frecuencia, names.arg = ifelse(ncol(tabla_df) == 2, tabla_df$Categoría, 1:nrow(tabla_df)),
-main = var, col = "steelblue", las = 2)
-} else {
-cat("Demasiadas categorías para graficar.\n\n")
-}
+  
+  cat("### Variable:", var, "\n\n")
+  
+  # Verificar si existe
+  if (!var %in% names(base_saludmental)) {
+    cat("La variable no existe en el dataset.\n\n")
+    next
+  }
+  
+  # Tabla de frecuencias
+  tabla <- table(base_saludmental[[var]], useNA = "ifany")
+  
+  if (length(tabla) == 0) {
+    cat("No hay datos para esta variable.\n\n")
+    next
+  }
+  
+  tabla_df <- as.data.frame(tabla)
+  names(tabla_df) <- c("Categoria", "Frecuencia")
+  
+  print(tabla_df)
+  
+  # Solo graficar si tiene <=10 categorías
+  if (nrow(tabla_df) <= 10) {
+    
+    # Crear gráfico
+    bp <- barplot(
+      tabla_df$Frecuencia,
+      names.arg = tabla_df$Categoria,
+      main = var,
+      col = "steelblue",
+      las = 2,
+      cex.names = 0.8
+    )
+    
+    # AGREGAR VALORES ENCIMA DE CADA BARRA
+    text(
+      x = bp,
+      y = tabla_df$Frecuencia,
+      labels = tabla_df$Frecuencia,
+      pos = 3,           # arriba de la barra
+      cex = 0.9
+    )
+    
+  } else {
+    cat("Demasiadas categorías para graficar.\n")
+  }
 }
 
 ```
