@@ -8,11 +8,11 @@ names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiar
 names(base_saludmental)[names(base_saludmental) == "Considera que usted ha cumplido con las medidas de autocuidado"] <- "cumple_autocuidado"
 names(base_saludmental)[names(base_saludmental) == "Considera que sus familiares han cumplido con las medidas de autocuidado"] <- "familia_autocuidado"
 names(base_saludmental)[names(base_saludmental) == "Considera que sus vecinos han cumplido con las medidas de autocuidado"] <- "vecinos_autocuidado"
-names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Clara]"] <- "info_alcaldia_clara"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Clara]"] <- "info_alcaldia_clara"
 names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Suficiente]"] <- "info_alcaldia_suficiente"
 names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Verídica]"] <- "info_alcaldia_veridica"
-names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Oportuna]"] <- "info_alcaldia_oportuna"
-names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Contradictoria]"] <- "info_alcaldia_contradictoria"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Oportuna]"] <- "info_alcaldia_oportuna"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Contradictoria]"] <- "info_alcaldia_contradictoria"
 names(base_saludmental)[names(base_saludmental) == "medio o medios por los que se entera de las decisiones tomadas por la alcaldía"] <- "medios_info_alcaldia"
 names(base_saludmental)[names(base_saludmental) == "¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
 names(base_saludmental)[names(base_saludmental) == "¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?"] <- "info_suficiente_covid"
@@ -52,6 +52,8 @@ names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 65 año
 names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
 names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
 names(base_saludmental)[names(base_saludmental) == "siente que en su casa usted está expuesto a algún tipo de violencia"] <- "violencia_hogar"
-names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnosticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
-names(base_saludmental)[names(base_saludmental) == "En caso de que la respue"
+names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnósticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
+names(base_saludmental)[names(base_saludmental) == "En caso de que la respuesta a la pregunta anterior sea \"\"Sí\"\", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"] <- "continua_tratamiento"
+
+                        
                         
