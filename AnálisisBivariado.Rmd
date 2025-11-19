@@ -1,0 +1,284 @@
+---
+title: "Análisis bivariado"
+author: "Maria Bonilla, Juan Guayazán y Jeronimo Quilaguy"
+date: "2025-11-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r importDataset}
+library(readr)
+base_saludmental <- read_delim("base_saludmental.csv", 
+                               delim = ";", escape_double = FALSE, trim_ws = TRUE)
+```
+
+
+```{r Renombramiento, echo=TRUE}
+names(base_saludmental)[names(base_saludmental) == "Confianza vecindario y vecinos"] <- "confianza_vecinos"
+names(base_saludmental)[names(base_saludmental) == "Hablar con vecinos antes del confinamiento"] <- "hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Frecuencia hablar con vecinos antes del confinamiento"] <- "freq_hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares"] <- "hablar_amigos_familia"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares antes del confinamiento"] <- "hablar_amigos_familia_antes"
+names(base_saludmental)[names(base_saludmental) == "Considera que usted ha cumplido con las medidas de autocuidado"] <- "cumple_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus familiares han cumplido con las medidas de autocuidado"] <- "familia_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus vecinos han cumplido con las medidas de autocuidado"] <- "vecinos_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Clara]"] <- "info_alcaldia_clara"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Suficiente]"] <- "info_alcaldia_suficiente"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Verídica]"] <- "info_alcaldia_veridica"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Oportuna]"] <- "info_alcaldia_oportuna"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Contradictoria]"] <- "info_alcaldia_contradictoria"
+names(base_saludmental)[names(base_saludmental) == "medio o medios por los que se entera de las decisiones tomadas por la alcaldía"] <- "medios_info_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
+names(base_saludmental)[names(base_saludmental) == "¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?"] <- "info_suficiente_covid"
+names(base_saludmental)[names(base_saludmental) == "Considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID-19 ha sido:"] <- "info_riesgos_covid"
+names(base_saludmental)[names(base_saludmental) == "Diagnosticado con COVID-19"] <- "diagnosticado_covid"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido ansioso o nervioso"] <- "ansioso_nervioso"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido decaído o deprimido"] <- "decaido_deprimido"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido tranquilo"] <- "tranquilo"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, se ha sentido cercano a las personas con las que convive"] <- "cercano_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido interés o placer al hacer las cosas"] <- "interes_actividades"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha tenido problemas para dormir"] <- "problemas_dormir"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, ha tenido desacuerdos con las personas con las que convive"] <- "desacuerdos_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir bebidas alcoholicas"] <- "consumo_alcohol"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de fumar cigarrillos o tabaco"] <- "consumo_tabaco"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva"] <- "consumo_sustancias"
+names(base_saludmental)[names(base_saludmental) == "¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones"] <- "factores_preocupacion"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]"] <- "apoyo_pareja"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]"] <- "apoyo_familia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]"] <- "apoyo_amigos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]"] <- "apoyo_empleador"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]"] <- "apoyo_vecinos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]"] <- "apoyo_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]"] <- "apoyo_gobierno"
+names(base_saludmental)[names(base_saludmental) == "Sexo"] <- "sexo"
+names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
+names(base_saludmental)[names(base_saludmental) == "Rango de edad"] <- "rango_edad"
+names(base_saludmental)[names(base_saludmental) == "¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema"] <- "enfermedades_previas"
+names(base_saludmental)[names(base_saludmental) == "Nivel educativo"] <- "nivel_educativo"
+names(base_saludmental)[names(base_saludmental) == "Localidad de residencia"] <- "localidad"
+names(base_saludmental)[names(base_saludmental) == "Situación laboral"] <- "situacion_laboral"
+names(base_saludmental)[names(base_saludmental) == "condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena"] <- "comodidad_vivienda"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar"] <- "personas_hogar"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 5 años o menos"] <- "ninos_5_menos"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar entre 6 años y 18 años"] <- "ninos_6_18"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar entre 19 años y 65 años"] <- "adultos_19_65"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 65 años o más"] <- "adultos_65_mas"
+names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
+names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
+names(base_saludmental)[names(base_saludmental) == "siente que en su casa usted está expuesto a algún tipo de violencia"] <- "violencia_hogar"
+names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnósticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
+names(base_saludmental)[names(base_saludmental) == "En caso de que la respuesta a la pregunta anterior sea \"\"Sí\"\", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"] <- "continua_tratamiento"
+```
+
+```{r , echo=TRUE}
+variables <- c(
+  "confianza_vecinos",
+  "hablar_vecinos_antes",
+  "freq_hablar_vecinos_antes",
+  "hablar_amigos_familia",
+  "hablar_amigos_familia_antes",
+  "cumple_autocuidado",
+  "familia_autocuidado",
+  "vecinos_autocuidado",
+  "info_alcaldia_clara",
+  "info_alcaldia_suficiente",
+  "info_alcaldia_veridica",
+  "info_alcaldia_oportuna",
+  "info_alcaldia_contradictoria",
+  "medios_info_alcaldia",
+  "sabe_actuar_covid",
+  "info_suficiente_covid",
+  "info_riesgos_covid",
+  "diagnosticado_covid",
+  "ansioso_nervioso",
+  "decaido_deprimido",
+  "tranquilo",
+  "cercano_convivientes",
+  "interes_actividades",
+  "problemas_dormir",
+  "desacuerdos_convivientes",
+  "consumo_alcohol",
+  "consumo_tabaco",
+  "consumo_sustancias",
+  "factores_preocupacion",
+  "apoyo_pareja",
+  "apoyo_familia",
+  "apoyo_amigos",
+  "apoyo_empleador",
+  "apoyo_vecinos",
+  "apoyo_alcaldia",
+  "apoyo_gobierno",
+  "sexo",
+  "edad",
+  "rango_edad",
+  "enfermedades_previas",
+  "nivel_educativo",
+  "localidad",
+  "situacion_laboral",
+  "comodidad_vivienda",
+  "personas_hogar",
+  "ninos_5_menos",
+  "ninos_6_18",
+  "adultos_19_65",
+  "adultos_65_mas",
+  "expresa_sentimientos",
+  "freq_actividad_fisica",
+  "violencia_hogar",
+  "diagnostico_salud_mental",
+  "continua_tratamiento"
+)
+```
+
+```{r , echo=TRUE}
+library(ggplot2)
+library(dplyr)
+
+#########################################
+# 1. Apoyo familiar vs ansiedad
+#########################################
+
+table(base_saludmental$apoyo_familia, base_saludmental$ansioso_nervioso)
+
+ggplot(base_saludmental, aes(x = apoyo_familia, fill = ansioso_nervioso)) +
+  geom_bar(position = "fill") +
+  labs(title = "Apoyo familiar vs Ansiedad", y = "Proporción")
+
+
+#########################################
+# 2. Frecuencia de contacto social vs depresión
+#########################################
+
+table(base_saludmental$hablar_amigos_familia, base_saludmental$decaido_deprimido)
+
+ggplot(base_saludmental, aes(x = hablar_amigos_familia, fill = decaido_deprimido)) +
+  geom_bar(position = "fill") +
+  labs(title = "Contacto social vs Depresión", y = "Proporción")
+
+
+#########################################
+# 3. Condiciones físicas de la vivienda vs tranquilidad
+#########################################
+
+table(base_saludmental$comodidad_vivienda, base_saludmental$tranquilo)
+
+ggplot(base_saludmental, aes(x = comodidad_vivienda, fill = tranquilo)) +
+  geom_bar(position = "fill") +
+  labs(title = "Condiciones de vivienda vs Tranquilidad", y = "Proporción")
+
+
+#########################################
+# 4. Actividad física vs ansiedad/decaimiento
+#########################################
+
+# ansiedad
+table(base_saludmental$freq_actividad_fisica, base_saludmental$ansioso_nervioso)
+
+ggplot(base_saludmental, aes(x = freq_actividad_fisica, fill = ansioso_nervioso)) +
+  geom_bar(position = "fill") +
+  labs(title = "Actividad física vs Ansiedad", y = "Proporción")
+
+# decaimiento/depresión
+table(base_saludmental$freq_actividad_fisica, base_saludmental$decaido_deprimido)
+
+ggplot(base_saludmental, aes(x = freq_actividad_fisica, fill = decaido_deprimido)) +
+  geom_bar(position = "fill") +
+  labs(title = "Actividad física vs Decaimiento", y = "Proporción")
+
+
+#########################################
+# 5. Exposición a violencia vs ansiedad/depresión
+#########################################
+
+table(base_saludmental$violencia_hogar, base_saludmental$ansioso_nervioso)
+
+ggplot(base_saludmental, aes(x = violencia_hogar, fill = ansioso_nervioso)) +
+  geom_bar(position = "fill") +
+  labs(title = "Violencia en el hogar vs Ansiedad", y = "Proporción")
+
+table(base_saludmental$violencia_hogar, base_saludmental$decaido_deprimido)
+
+ggplot(base_saludmental, aes(x = violencia_hogar, fill = decaido_deprimido)) +
+  geom_bar(position = "fill") +
+  labs(title = "Violencia en el hogar vs Depresión", y = "Proporción")
+
+
+#########################################
+# 6. Problemas económicos vs depresión
+# (está dentro de factores_preocupacion)
+#########################################
+
+base_saludmental$problemas_economicos <- ifelse(
+  grepl("econ", base_saludmental$factores_preocupacion, ignore.case = TRUE),
+  "Sí",
+  "No"
+)
+
+table(base_saludmental$problemas_economicos, base_saludmental$decaido_deprimido)
+
+ggplot(base_saludmental, aes(x = problemas_economicos, fill = decaido_deprimido)) +
+  geom_bar(position = "fill") +
+  labs(title = "Problemas económicos vs Depresión", y = "Proporción")
+
+
+#########################################
+# 7. Información clara de la alcaldía vs ansiedad
+#########################################
+
+table(base_saludmental$info_alcaldia_clara, base_saludmental$ansioso_nervioso)
+
+ggplot(base_saludmental, aes(x = info_alcaldia_clara, fill = ansioso_nervioso)) +
+  geom_bar(position = "fill") +
+  labs(title = "Información clara de alcaldía vs Ansiedad", y = "Proporción")
+
+
+#########################################
+# 8. Sexo vs consumo de alcohol
+#########################################
+
+table(base_saludmental$sexo, base_saludmental$consumo_alcohol)
+
+ggplot(base_saludmental, aes(x = sexo, fill = consumo_alcohol)) +
+  geom_bar(position = "fill") +
+  labs(title = "Sexo vs Consumo de alcohol", y = "Proporción")
+
+
+#########################################
+# 9. Edad vs problemas para dormir
+#########################################
+
+ggplot(base_saludmental, aes(x = edad, y = as.numeric(problemas_dormir))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  labs(title = "Edad vs Problemas para dormir",
+       y = "Problemas para dormir (numérico)")
+
+
+#########################################
+# 10. Diagnóstico COVID vs preocupación/ansiedad
+#########################################
+
+# preocupación viene en factores_preocupacion → detectar si menciona "COVID" o "salud"
+base_saludmental$preocupacion_salud <- ifelse(
+  grepl("salud|covid", base_saludmental$factores_preocupacion, ignore.case = TRUE),
+  "Sí",
+  "No"
+)
+
+table(base_saludmental$diagnosticado_covid, base_saludmental$preocupacion_salud)
+
+ggplot(base_saludmental, aes(x = diagnosticado_covid, fill = preocupacion_salud)) +
+  geom_bar(position = "fill") +
+  labs(title = "Diagnóstico COVID vs Preocupación", y = "Proporción")
+
+table(base_saludmental$diagnosticado_covid, base_saludmental$ansioso_nervioso)
+
+ggplot(base_saludmental, aes(x = diagnosticado_covid, fill = ansioso_nervioso)) +
+  geom_bar(position = "fill") +
+  labs(title = "Diagnóstico COVID vs Ansiedad", y = "Proporción")
+
+
+```
