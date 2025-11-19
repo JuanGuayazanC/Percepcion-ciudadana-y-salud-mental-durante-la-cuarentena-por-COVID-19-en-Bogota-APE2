@@ -5,6 +5,8 @@ View(base_saludmental)
 
 names(base_saludmental)
 
+unique(base_saludmental$comodidad_vivienda)
+
 analizar_variables <- function(data) {
   for (var in names(data)) {
     cat("\n==============================\n")
