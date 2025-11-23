@@ -8,9 +8,9 @@ Breve descripción que indique qué hace el proyecto y por qué es útil o inter
 
 ## 👥 Autores
 
-- SARA CAMILA APONTE TORRES → [sara.aponte-t@mail.escuelaing.edu.co](mailto:sara.aponte-t@mail.escuelaing.edu.co)
-- JUAN ESTEBAN ROA BENITO → [juan.roa-b@mail.escuelaing.edu.co](mailto:juan.roa-b@mail.escuelaing.edu.co)
+- MARIA PAULA BONILLA MARTINEZ → [maria.bmartinez@mail.escuelaing.edu.co](mailto:maria.bmartinez@mail.escuelaing.edu.co)
 - [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JuanGuayazanC) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)
+- JERONIMO ESTEBAN QUILAGUY TORRES → [jeronimo.quilaguy-t@mail.escuelaing.edu.co](mailto:jeronimo.quilaguy-t@mail.escuelaing.edu.co)
 
  ()     
  →    
