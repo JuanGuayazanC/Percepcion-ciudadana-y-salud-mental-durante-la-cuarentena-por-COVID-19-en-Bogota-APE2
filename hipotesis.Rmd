@@ -1,0 +1,162 @@
+---
+title: "Sistema de hipotesis"
+author: "Maria Bonilla, Juan Guayazán y Jeronimo Quilaguy"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r }
+library(readr)
+
+library(readr)
+base_saludmental <- read_delim("base_saludmental.csv", 
+                               delim = ";", escape_double = FALSE, trim_ws = TRUE)
+```
+
+
+```{r , echo=FALSE}
+names(base_saludmental)[names(base_saludmental) ==
+"¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
+
+names(base_saludmental)[names(base_saludmental) ==
+"Diagnosticado con COVID-19"] <- "diagnosticado_covid"
+
+names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
+
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido decaído o deprimido"] <- "decaido_deprimido"
+
+names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
+
+names(base_saludmental)[names(base_saludmental) == "Diagnosticado con COVID-19"] <- "diagnosticado_covid"
+```
+
+## ¿Saber actuar frente al COVID está asociado con haber sido diagnosticado?
+
+```{r , echo=FALSE}
+## --------------------------------------------
+## TABLA Y PRUEBA CHI-CUADRADO
+## --------------------------------------------
+
+tabla <- table(
+  base_saludmental$diagnosticado_covid,
+  base_saludmental$sabe_actuar_covid
+)
+
+prueba <- chisq.test(tabla, correct = FALSE)
+
+chi_obs <- as.numeric(prueba$statistic)
+gl <- as.numeric(prueba$parameter)
+p_valor <- prueba$p.value
+alpha <- 0.05
+chi_critico <- qchisq(1 - alpha, df = gl)
+
+
+## --------------------------------------------
+## INTERVALO DE CONFIANZA PARA DIFERENCIA DE PROPORCIONES
+## --------------------------------------------
+
+# Suponiendo que las categorías son "Sí" / "No"
+prop_test <- prop.test(tabla)    # test de dos proporciones
+IC <- prop_test$conf.int         # intervalo de confianza
+p_dif <- diff(prop.table(tabla, 1)[, "Sí"])  # diferencia de proporciones
+
+IC
+p_dif
+
+
+## --------------------------------------------
+## GRÁFICO DE LA DISTRIBUCIÓN CHI-CUADRADO
+## --------------------------------------------
+
+library(ggplot2)
+
+x_vals <- seq(0, max(chi_obs, chi_critico) + 10, length.out = 500)
+df <- data.frame(
+  x = x_vals,
+  dens = dchisq(x_vals, df = gl)
+)
+
+ggplot(df, aes(x, dens)) +
+  geom_line(size = 1.2, color = "black") +
+
+  # Zona crítica
+  geom_area(
+    data = subset(df, x >= chi_critico),
+    aes(x, dens),
+    fill = "red", alpha = 0.3
+  ) +
+
+  # Línea del valor crítico
+  geom_vline(xintercept = chi_critico, color = "red", linetype = "dashed", size = 1.2) +
+
+  # Línea del valor observado
+  geom_vline(xintercept = chi_obs, color = "blue", size = 1.3) +
+
+  annotate("text", x = chi_critico, y = dchisq(chi_critico, gl) + 0.01,
+           label = paste0("χ² crítico = ", round(chi_critico, 3)),
+           color = "red", fontface = "bold", hjust = -0.1) +
+
+  annotate("text", x = chi_obs, y = dchisq(chi_obs, gl) + 0.01,
+           label = paste0("χ² observado = ", round(chi_obs, 3)),
+           color = "blue", fontface = "bold", hjust = -0.1) +
+
+  labs(
+    title = "Distribución Chi-cuadrado\nZona Crítica vs Valor Observado",
+    x = expression(chi^2),
+    y = "Densidad"
+  ) +
+  theme_minimal(base_size = 15)
+
+
+## --------------------------------------------
+## DECISIONES
+## --------------------------------------------
+
+cat("CHI OBSERVADO =", chi_obs, "\n")
+cat("CHI CRÍTICO   =", chi_critico, "\n")
+cat("p-valor       =", p_valor, "\n\n")
+
+if (chi_obs > chi_critico) {
+  cat("❌ Se RECHAZA H0 por estadístico.\n")
+} else {
+  cat("✔ No se rechaza H0 por estadístico.\n")
+}
+
+if (p_valor < alpha) {
+  cat("❌ Se RECHAZA H0 por p-valor.\n")
+} else {
+  cat("✔ No se rechaza H0 por p-valor.\n")
+}
+
+cat("\n")
+cat("Diferencia de proporciones =", round(p_dif, 4), "\n")
+cat("IC 95% =", paste(round(IC[1], 4), "a", round(IC[2], 4)), "\n")
+
+if (IC[1] > 0 | IC[2] < 0) {
+  cat("❌ El IC NO incluye 0 → hay diferencia significativa.\n")
+} else {
+  cat("✔ El IC incluye 0 → no hay diferencia significativa.\n")
+}
+```
+
+
+```{r , echo=FALSE}
+
+```
+
+
+```{r , echo=FALSE}
+
+```
+
+```{r , echo=FALSE}
+
+```
+
+
+

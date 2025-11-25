@@ -1,12 +1,9 @@
-# --- Cargar base ---
-# base_saludmental <- read_delim(...)
-
 # Nivel de confianza
 alfa <- 0.05
 Z <- qnorm(alfa/2, lower.tail = FALSE)   # z = 1.96
 
 # Tamaño final según dataset
-final_n <- nrow(base_saludmental)
+final_n <- nrow(base_saludmental) - 1
 
 # Secuencia del eje X desde 100 hasta final_n
 n_vals <- seq(100, final_n, by = 100)
