@@ -8,13 +8,13 @@ Breve descripción que indique qué hace el proyecto y por qué es útil o inter
 
 ## 👥 Autores
 
-
-- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JSGC-ECI) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)
-- ​​
+- MARIA PAULA BONILLA MARTINEZ → [maria.bmartinez@mail.escuelaing.edu.co](mailto:maria.bmartinez@mail.escuelaing.edu.co)
+- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JuanGuayazanC) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)
+- JERONIMO ESTEBAN QUILAGUY TORRES → [jeronimo.quilaguy-t@mail.escuelaing.edu.co](mailto:jeronimo.quilaguy-t@mail.escuelaing.edu.co)
 
  ()     
  →    
-Ingeniería de Sistemas e Ingeniería Estadística    
+Ingeniería Estadística    
 Escuela Colombiana de Ingeniería Julio Garavito   
 2025-  
 
