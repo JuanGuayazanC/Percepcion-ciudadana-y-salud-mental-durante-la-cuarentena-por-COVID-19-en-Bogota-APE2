@@ -11,7 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r }
-library(readr)
+library(dplyr)
+library(ggplot2)
+
 
 library(readr)
 base_saludmental <- read_delim("base_saludmental.csv", 
@@ -19,7 +21,7 @@ base_saludmental <- read_delim("base_saludmental.csv",
 ```
 
 
-```{r , echo=FALSE}
+```{r , echo=TRUE}
 names(base_saludmental)[names(base_saludmental) ==
 "¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
 
@@ -33,11 +35,15 @@ names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuaren
 names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
 
 names(base_saludmental)[names(base_saludmental) == "Diagnosticado con COVID-19"] <- "diagnosticado_covid"
+
+names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
+
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido ansioso o nervioso"] <- "ansioso_nervioso"
 ```
 
 ## ¿Saber actuar frente al COVID está asociado con haber sido diagnosticado?
 
-```{r , echo=FALSE}
+```{r , echo=TRUE}
 ## --------------------------------------------
 ## TABLA Y PRUEBA CHI-CUADRADO
 ## --------------------------------------------
@@ -144,17 +150,376 @@ if (IC[1] > 0 | IC[2] < 0) {
 }
 ```
 
+##  LA EDAD INFLUYE EN LA CANTIDAD DE DIAGNOSTICADOS
 
-```{r , echo=FALSE}
+```{r , echo=TRUE}
+## ============================================================
+## CREAR LOS DOS GRUPOS DE EDAD (15–25) vs (26–35)
+## ============================================================
 
+grupo1 <- subset(base_saludmental, edad >= 15 & edad <= 25)
+grupo2 <- subset(base_saludmental, edad >= 26 & edad <= 35)
+
+# Proporciones
+x1 <- sum(grupo1$diagnosticado_covid == "Sí", na.rm = TRUE)
+#x1
+n1 <- nrow(grupo1)
+#n1
+
+x2 <- sum(grupo2$diagnosticado_covid == "Sí", na.rm = TRUE)
+#x2
+n2 <- nrow(grupo2)
+#n2
+
+p1 <- x1 / n1
+p2 <- x2 / n2
+
+cat("Proporcion 15 a 25 años diagnosticados", round(p1, 4))
+cat("Proporcion 26 a 35 años diagnosticados", round(p2, 4))
+p2
+
+## ============================================================
+## PRUEBA DE DIFERENCIA DE PROPORCIONES (Z)
+## ============================================================
+
+# Hipótesis:
+# H0: p1 = p2
+# H1: p1 != p2
+
+p_comb <- (x1 + x2) / (n1 + n2)
+
+z_obs <- (p1 - p2) / sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))
+p_valor <- 2 * (1 - pnorm(abs(z_obs)))
+
+z_obs
+p_valor
+
+# Valor crítico (α = 0.05)
+z_crit <- qnorm(0.975)
+
+z_crit
+
+## ============================================================
+## DECISIÓN
+## ============================================================
+
+if (abs(z_obs) > z_crit) {
+  cat("\n❌ Se RECHAZA H0 por estadístico (cae en zona crítica).\n")
+} else {
+  cat("\n✔ No se rechaza H0 por estadístico.\n")
+}
+
+if (p_valor < 0.05) {
+  cat("❌ Se RECHAZA H0 por p-valor (< 0.05).\n")
+} else {
+  cat("✔ No se rechaza H0 por p-valor.\n")
+}
+
+## ============================================================
+## INTERVALO DE CONFIANZA 95%
+## ============================================================
+
+error <- z_crit * sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+
+IC_inf <- (p1 - p2) - error
+IC_sup <- (p1 - p2) + error
+
+c(IC_inf, IC_sup)
+
+## ============================================================
+## GRÁFICO: ZONA CRÍTICA (Distribución Normal)
+## ============================================================
+
+x_vals <- seq(-4, 4, length.out = 500)
+y_vals <- dnorm(x_vals)
+
+plot(x_vals, y_vals, type="l", lwd=2,
+     main="Prueba Z: Zona crítica y valor observado",
+     xlab="Z", ylab="Densidad")
+
+# Zona crítica
+zc1 <- seq(z_crit, 4, length.out = 200)
+zc2 <- seq(-4, -z_crit, length.out = 200)
+
+polygon(c(zc1, rev(zc1)), c(dnorm(zc1), rep(0, length(zc1))),
+        col=rgb(1, 0, 0, 0.3), border=NA)
+
+polygon(c(zc2, rev(zc2)), c(dnorm(zc2), rep(0, length(zc2))),
+        col=rgb(1, 0, 0, 0.3), border=NA)
+
+# Líneas críticas
+abline(v = z_crit, col="red", lwd=2, lty=2)
+abline(v = -z_crit, col="red", lwd=2, lty=2)
+
+# Valor observado
+abline(v = z_obs, col="blue", lwd=3)
+
+text(z_obs, dnorm(z_obs) + 0.01,
+     paste("z observado =", round(z_obs, 3)),
+     col="blue", pos=3)
+
+text(z_crit, dnorm(z_crit) + 0.01,
+     paste("z crítico =", round(z_crit, 3)),
+     col="red", pos=3)
+
+legend("topright",
+       legend=c("Curva normal", "Zona crítica", "z crítico", "z observado"),
+       col=c("black", rgb(1,0,0,0.3), "red", "blue"),
+       lwd=c(2,10,2,3), bty="n")
 ```
 
+## ¿La actividad física está asociada con sentirse decaído/deprimido?
 
-```{r , echo=FALSE}
+```{r , echo=TRUE}
+## ============================================================
+## TABLA Y PRUEBA CHI-CUADRADO
+## ============================================================
 
+tabla <- table(base_saludmental$freq_actividad_fisica,
+               base_saludmental$decaido_deprimido)
+
+tabla
+
+# Prueba Chi² sin corrección
+prueba <- chisq.test(tabla, correct = FALSE)
+prueba
+
+chi_obs <- prueba$statistic
+gl <- prueba$parameter
+p_valor <- prueba$p.value
+
+# Valor crítico (α = 0.05)
+chi_crit <- qchisq(0.95, df = gl)
+
+chi_obs
+chi_crit
+p_valor
+
+## ============================================================
+## DECISIÓN
+## ============================================================
+
+if (chi_obs > chi_crit) {
+  cat("\n❌ Se RECHAZA H0 por estadístico (zona crítica).\n")
+} else {
+  cat("\n✔ No se rechaza H0 por estadístico.\n")
+}
+
+if (p_valor < 0.05) {
+  cat("❌ Se RECHAZA H0 por p-valor (< 0.05).\n")
+} else {
+  cat("✔ No se rechaza H0 por p-valor.\n")
+}
+
+## ============================================================
+## INTERVALO DE CONFIANZA (comparación dos proporciones)
+## ============================================================
+
+## Seleccionar niveles automáticamente
+niveles <- levels(base_saludmental$freq_actividad_fisica)
+
+nivel_bajo <- niveles[1]
+nivel_alto <- niveles[length(niveles)]
+
+# Contar éxitos (deprimidos = "Sí")
+x1 <- sum(base_saludmental$freq_actividad_fisica == nivel_bajo &
+            base_saludmental$decaido_deprimido == "Sí")
+
+n1 <- sum(base_saludmental$freq_actividad_fisica == nivel_bajo)
+
+x2 <- sum(base_saludmental$freq_actividad_fisica == nivel_alto &
+            base_saludmental$decaido_deprimido == "Sí")
+
+n2 <- sum(base_saludmental$freq_actividad_fisica == nivel_alto)
+
+## ----------- VERIFICACIÓN PARA EVITAR ERROR --------------
+if (n1 == 0 | n2 == 0) {
+  
+  cat("\n⚠️ No se puede calcular el intervalo de confianza.\n")
+  cat("Motivo: uno de los niveles NO tiene observaciones.\n")
+  
+  cat("\nValores:\n")
+  cat("Nivel bajo:", nivel_bajo, "| n1 =", n1, "\n")
+  cat("Nivel alto:", nivel_alto, "| n2 =", n2, "\n")
+  
+} else {
+  
+  cat("\nCálculo del intervalo de confianza entre niveles extremos:\n")
+  print(prop.test(c(x1, x2), c(n1, n2), correct = FALSE))
+  
+}
+
+
+## ============================================================
+## GRÁFICO: ZONA CRÍTICA + VALOR OBSERVADO (Chi²)
+## ============================================================
+
+x_vals <- seq(0, max(chi_obs + 10, chi_crit + 10), length.out = 500)
+y_vals <- dchisq(x_vals, df = gl)
+
+plot(x_vals, y_vals, type="l", lwd=2,
+     main="Chi-cuadrado: Zona crítica y valor observado",
+     xlab=expression(chi^2), ylab="Densidad")
+
+# Zona crítica
+xc <- seq(chi_crit, max(x_vals), length.out=200)
+yc <- dchisq(xc, df=gl)
+
+polygon(c(xc, rev(xc)), c(yc, rep(0, length(yc))),
+        col=rgb(1,0,0,0.3), border=NA)
+
+# Línea valor crítico
+abline(v=chi_crit, col="red", lwd=2, lty=2)
+
+# Línea valor observado
+abline(v=chi_obs, col="blue", lwd=3)
+
+# Etiquetas
+text(chi_obs, dchisq(chi_obs, gl) + 0.01,
+     paste("χ² observado =", round(chi_obs, 3)),
+     col="blue", pos=3)
+
+text(chi_crit, dchisq(chi_crit, gl) + 0.01,
+     paste("χ² crítico =", round(chi_crit, 3)),
+     col="red", pos=3)
+
+legend("topright",
+       legend=c("Curva Chi²", "Zona crítica", "Valor crítico", "Valor observado"),
+       col=c("black", rgb(1,0,0,0.3), "red", "blue"),
+       lwd=c(2,10,2,3), bty="n")
 ```
 
+## ¿La edad de las personas está relacionada con la oportunidad de expresarle a otros cómo se sienten durante la pandemia?
+
 ```{r , echo=FALSE}
+
+## --------------------------------------------------------
+## PREPARACIÓN DE DATOS
+## --------------------------------------------------------
+
+# Filtrar NA y asegurar que la variable sí exista
+datos <- base_saludmental %>% 
+  filter(!is.na(edad),
+         !is.na(expresa_sentimientos))
+
+# Revisar niveles
+table(datos$expresa_sentimientos)
+
+## --------------------------------------------------------
+## DESCRIPTIVOS POR GRUPO
+## --------------------------------------------------------
+
+descriptivos <- datos %>%
+  group_by(expresa_sentimientos) %>%
+  summarise(
+    media_edad = mean(edad, na.rm = TRUE),
+    sd_edad = sd(edad, na.rm = TRUE),
+    n = n()
+  )
+descriptivos
+
+## --------------------------------------------------------
+## PRUEBA T DE DIFERENCIA DE MEDIAS
+## --------------------------------------------------------
+
+ttest <- t.test(edad ~ expresa_sentimientos,
+                data = datos,
+                var.equal = FALSE)
+
+t_obs <- as.numeric(ttest$statistic)
+gl <- as.numeric(ttest$parameter)
+p_valor <- ttest$p.value
+IC <- ttest$conf.int
+alpha <- 0.05
+t_critico <- qt(1 - alpha/2, df = gl)
+
+## --------------------------------------------------------
+## GRÁFICO DE LA DISTRIBUCIÓN t
+## --------------------------------------------------------
+
+# --- Datos de la prueba t ya calculados anteriormente ---
+t_value <- ttest$statistic
+df <- ttest$parameter
+p_value <- ttest$p.value
+
+# t crítico para alfa = 0.05 (dos colas)
+t_crit <- qt(0.975, df = df)
+
+# Datos para la curva t
+x_vals <- seq(-5, 5, length.out = 1000)
+df_plot <- data.frame(x = x_vals,
+                      y = dt(x_vals, df = df))
+
+ggplot(df_plot, aes(x, y)) +
+  geom_line(color = "black", size = 1) +
+
+  # --- Zona crítica ---
+  geom_area(data = subset(df_plot, x <= -t_crit),
+            aes(x, y), fill = "red", alpha = 0.3) +
+  geom_area(data = subset(df_plot, x >=  t_crit),
+            aes(x, y), fill = "red", alpha = 0.3) +
+
+  # --- Líneas de t crítico ---
+  geom_vline(xintercept = c(-t_crit, t_crit),
+             color = "red", linetype = "dashed", size = 1) +
+
+  # --- Línea t observado ---
+  geom_vline(xintercept = t_value,
+             color = "blue", size = 1.3) +
+
+  # --- Texto explicativo ---
+  annotate("text", x = t_value, y = 0.38,
+           label = paste("t observado =", round(t_value, 3)),
+           color = "blue", vjust = -0.5, size = 5) +
+
+  annotate("text", x =  t_crit, y = 0.32,
+           label = paste("t crítico =", round(t_crit, 3)),
+           color = "red", size = 5, hjust = -0.2) +
+
+  annotate("text", x = -t_crit, y = 0.32,
+           label = paste("t crítico =", round(-t_crit, 3)),
+           color = "red", size = 5, hjust = 1.2) +
+
+  # Leyenda manual
+  annotate("text", x = 0, y = 0.42,
+           label = "Curva t\nZona crítica\n t crítico\n t observado",
+           hjust = 0, size = 5) +
+
+  labs(
+    title = "Prueba t: Zona crítica y valor observado",
+    x = "t",
+    y = "Densidad"
+  ) +
+  theme_minimal(base_size = 15)
+
+## --------------------------------------------------------
+## DECISIONES DE LA PRUEBA
+## --------------------------------------------------------
+
+cat("t OBSERVADO =", round(t_obs, 4), "\n")
+cat("t CRÍTICO   =", round(t_critico, 4), "\n")
+cat("p-valor     =", round(p_valor, 4), "\n\n")
+
+if (abs(t_obs) > t_critico) {
+  cat("❌ Se RECHAZA H0 por estadístico.\n")
+} else {
+  cat("✔ No se rechaza H0 por estadístico.\n")
+}
+
+if (p_valor < alpha) {
+  cat("❌ Se RECHAZA H0 por p-valor.\n")
+} else {
+  cat("✔ No se rechaza H0 por p-valor.\n")
+}
+
+cat("\nIntervalo de confianza 95% para (media1 - media2):\n")
+cat(round(IC[1], 4), "a", round(IC[2], 4), "\n")
+
+if (IC[1] > 0 | IC[2] < 0) {
+  cat("❌ El IC NO incluye 0 → hay diferencia significativa en la edad.\n")
+} else {
+  cat("✔ El IC incluye 0 → no hay diferencia significativa en la edad.\n")
+}
 
 ```
 
