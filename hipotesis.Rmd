@@ -22,37 +22,84 @@ base_saludmental <- read_delim("base_saludmental.csv",
 
 
 ```{r , echo=TRUE}
-names(base_saludmental)[names(base_saludmental) ==
-"¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
-
-names(base_saludmental)[names(base_saludmental) ==
-"Diagnosticado con COVID-19"] <- "diagnosticado_covid"
-
-names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
-
-names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido decaído o deprimido"] <- "decaido_deprimido"
-
-names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
-
+names(base_saludmental)[names(base_saludmental) == "Confianza vecindario y vecinos"] <- "confianza_vecinos"
+names(base_saludmental)[names(base_saludmental) == "Hablar con vecinos antes del confinamiento"] <- "hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Frecuencia hablar con vecinos antes del confinamiento"] <- "freq_hablar_vecinos_antes"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares"] <- "hablar_amigos_familia"
+names(base_saludmental)[names(base_saludmental) == "Hablar con amigos y familiares antes del confinamiento"] <- "hablar_amigos_familia_antes"
+names(base_saludmental)[names(base_saludmental) == "Considera que usted ha cumplido con las medidas de autocuidado"] <- "cumple_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus familiares han cumplido con las medidas de autocuidado"] <- "familia_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "Considera que sus vecinos han cumplido con las medidas de autocuidado"] <- "vecinos_autocuidado"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Clara]"] <- "info_alcaldia_clara"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Suficiente]"] <- "info_alcaldia_suficiente"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 [Verídica]"] <- "info_alcaldia_veridica"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Oportuna]"] <- "info_alcaldia_oportuna"
+names(base_saludmental)[names(base_saludmental) == "estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19  [Contradictoria]"] <- "info_alcaldia_contradictoria"
+names(base_saludmental)[names(base_saludmental) == "medio o medios por los que se entera de las decisiones tomadas por la alcaldía"] <- "medios_info_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"] <- "sabe_actuar_covid"
+names(base_saludmental)[names(base_saludmental) == "¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?"] <- "info_suficiente_covid"
+names(base_saludmental)[names(base_saludmental) == "Considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID-19 ha sido:"] <- "info_riesgos_covid"
 names(base_saludmental)[names(base_saludmental) == "Diagnosticado con COVID-19"] <- "diagnosticado_covid"
-
-names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
-
 names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido ansioso o nervioso"] <- "ansioso_nervioso"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido decaído o deprimido"] <- "decaido_deprimido"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena se ha sentido tranquilo"] <- "tranquilo"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, se ha sentido cercano a las personas con las que convive"] <- "cercano_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido interés o placer al hacer las cosas"] <- "interes_actividades"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha tenido problemas para dormir"] <- "problemas_dormir"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena, ha tenido desacuerdos con las personas con las que convive"] <- "desacuerdos_convivientes"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir bebidas alcoholicas"] <- "consumo_alcohol"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de fumar cigarrillos o tabaco"] <- "consumo_tabaco"
+names(base_saludmental)[names(base_saludmental) == "Durante el periodo de cuarentena ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva"] <- "consumo_sustancias"
+names(base_saludmental)[names(base_saludmental) == "¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones"] <- "factores_preocupacion"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]"] <- "apoyo_pareja"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]"] <- "apoyo_familia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]"] <- "apoyo_amigos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]"] <- "apoyo_empleador"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]"] <- "apoyo_vecinos"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]"] <- "apoyo_alcaldia"
+names(base_saludmental)[names(base_saludmental) == "¿qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]"] <- "apoyo_gobierno"
+names(base_saludmental)[names(base_saludmental) == "Sexo"] <- "sexo"
+names(base_saludmental)[names(base_saludmental) == "Edad"] <- "edad"
+names(base_saludmental)[names(base_saludmental) == "Rango de edad"] <- "rango_edad"
+names(base_saludmental)[names(base_saludmental) == "¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema"] <- "enfermedades_previas"
+names(base_saludmental)[names(base_saludmental) == "Nivel educativo"] <- "nivel_educativo"
+names(base_saludmental)[names(base_saludmental) == "Localidad de residencia"] <- "localidad"
+names(base_saludmental)[names(base_saludmental) == "Situación laboral"] <- "situacion_laboral"
+names(base_saludmental)[names(base_saludmental) == "condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena"] <- "comodidad_vivienda"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar"] <- "personas_hogar"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar 5 años o menos"] <- "ninos_5_menos"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar  entre 6 años y 18 años"] <- "ninos_6_18"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar  entre 19 años y 65 años"] <- "adultos_19_65"
+names(base_saludmental)[names(base_saludmental) == "Personas en el hogar  65 años o más"] <- "adultos_65_mas"
+names(base_saludmental)[names(base_saludmental) == "¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"] <- "expresa_sentimientos"
+names(base_saludmental)[names(base_saludmental) == "frecuencia actividad física"] <- "freq_actividad_fisica"
+names(base_saludmental)[names(base_saludmental) == "siente que en su casa usted está expuesto a algún tipo de violencia"] <- "violencia_hogar"
+names(base_saludmental)[names(base_saludmental) == "¿Usted o alguna de las personas con las que vive ha sido diagnósticado con alguna enfermedad de salud mental que requiera tratamiento?"] <- "diagnostico_salud_mental"
+names(base_saludmental)[names(base_saludmental) == "En caso de que la respuesta a la pregunta anterior sea \"\"Sí\"\", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"] <- "continua_tratamiento"
+
 ```
 
 ## ¿Saber actuar frente al COVID está asociado con haber sido diagnosticado?
 
-```{r , echo=TRUE}
+```{r Caso1, echo=TRUE}
 ## --------------------------------------------
 ## TABLA Y PRUEBA CHI-CUADRADO
 ## --------------------------------------------
 
+# Filtrar NA
+datos <- base_saludmental %>% 
+  filter(!is.na(rango_edad),
+         !is.na(expresa_sentimientos))
+
+# Tabla de contingencia
 tabla <- table(
-  base_saludmental$diagnosticado_covid,
-  base_saludmental$sabe_actuar_covid
+  datos$rango_edad,
+  datos$expresa_sentimientos
 )
 
+tabla
+
+# Prueba Chi-cuadrado
 prueba <- chisq.test(tabla, correct = FALSE)
 
 chi_obs <- as.numeric(prueba$statistic)
@@ -66,13 +113,17 @@ chi_critico <- qchisq(1 - alpha, df = gl)
 ## INTERVALO DE CONFIANZA PARA DIFERENCIA DE PROPORCIONES
 ## --------------------------------------------
 
-# Suponiendo que las categorías son "Sí" / "No"
-prop_test <- prop.test(tabla)    # test de dos proporciones
-IC <- prop_test$conf.int         # intervalo de confianza
-p_dif <- diff(prop.table(tabla, 1)[, "Sí"])  # diferencia de proporciones
+# Prueba de proporciones para tabla Rx2 (expresa sentimientos)
+prop_test <- prop.test(tabla)
 
-IC
-p_dif
+IC <- prop_test$conf.int
+
+# Para la diferencia de proporciones “Sí” entre grupos consecutivos
+# (opcional — puedes elegir cualquier par de grupos)
+propPorGrupo <- prop.table(tabla, 1)[, "Sí"]
+
+# Ejemplo: diferencia entre primer y último grupo
+p_dif <- propPorGrupo[length(propPorGrupo)] - propPorGrupo[1]
 
 
 ## --------------------------------------------
@@ -103,11 +154,11 @@ ggplot(df, aes(x, dens)) +
   # Línea del valor observado
   geom_vline(xintercept = chi_obs, color = "blue", size = 1.3) +
 
-  annotate("text", x = chi_critico, y = dchisq(chi_critico, gl) + 0.01,
+  annotate("text", x = chi_critico, y = dchisq(chi_critico, gl) + 0.005,
            label = paste0("χ² crítico = ", round(chi_critico, 3)),
            color = "red", fontface = "bold", hjust = -0.1) +
 
-  annotate("text", x = chi_obs, y = dchisq(chi_obs, gl) + 0.01,
+  annotate("text", x = chi_obs, y = dchisq(chi_obs, gl) + 0.005,
            label = paste0("χ² observado = ", round(chi_obs, 3)),
            color = "blue", fontface = "bold", hjust = -0.1) +
 
@@ -140,7 +191,7 @@ if (p_valor < alpha) {
 }
 
 cat("\n")
-cat("Diferencia de proporciones =", round(p_dif, 4), "\n")
+cat("Diferencia de proporciones (primer vs último grupo) =", round(p_dif, 4), "\n")
 cat("IC 95% =", paste(round(IC[1], 4), "a", round(IC[2], 4)), "\n")
 
 if (IC[1] > 0 | IC[2] < 0) {
@@ -315,78 +366,41 @@ if (p_valor < 0.05) {
 ## INTERVALO DE CONFIANZA (comparación dos proporciones)
 ## ============================================================
 
-## Seleccionar niveles automáticamente
+## Elegir automáticamente niveles extremos de actividad física
 niveles <- levels(base_saludmental$freq_actividad_fisica)
 
 nivel_bajo <- niveles[1]
 nivel_alto <- niveles[length(niveles)]
 
-# Contar éxitos (deprimidos = "Sí")
+# Contar “decaído/deprimido = Mucho más que antes / Un poco más que antes”
+# Puedes ajustar si usas un valor diferente
+niveles_depresion_alta <- c("Mucho más que antes", "Un poco más que antes")
+
 x1 <- sum(base_saludmental$freq_actividad_fisica == nivel_bajo &
-            base_saludmental$decaido_deprimido == "Sí")
+            base_saludmental$decaido_deprimido %in% niveles_depresion_alta)
 
 n1 <- sum(base_saludmental$freq_actividad_fisica == nivel_bajo)
 
 x2 <- sum(base_saludmental$freq_actividad_fisica == nivel_alto &
-            base_saludmental$decaido_deprimido == "Sí")
+            base_saludmental$decaido_deprimido %in% niveles_depresion_alta)
 
 n2 <- sum(base_saludmental$freq_actividad_fisica == nivel_alto)
+
 
 ## ----------- VERIFICACIÓN PARA EVITAR ERROR --------------
 if (n1 == 0 | n2 == 0) {
   
   cat("\n⚠️ No se puede calcular el intervalo de confianza.\n")
-  cat("Motivo: uno de los niveles NO tiene observaciones.\n")
+  cat("Motivo: uno de los niveles NO tiene observaciones.\n\n")
   
-  cat("\nValores:\n")
+  cat("Valores:\n")
   cat("Nivel bajo:", nivel_bajo, "| n1 =", n1, "\n")
   cat("Nivel alto:", nivel_alto, "| n2 =", n2, "\n")
   
 } else {
   
-  cat("\nCálculo del intervalo de confianza entre niveles extremos:\n")
-  print(prop.test(c(x1, x2), c(n1, n2), correct = FALSE))
-  
-}
+  cat("\nCálculo del inte
 
-
-## ============================================================
-## GRÁFICO: ZONA CRÍTICA + VALOR OBSERVADO (Chi²)
-## ============================================================
-
-x_vals <- seq(0, max(chi_obs + 10, chi_crit + 10), length.out = 500)
-y_vals <- dchisq(x_vals, df = gl)
-
-plot(x_vals, y_vals, type="l", lwd=2,
-     main="Chi-cuadrado: Zona crítica y valor observado",
-     xlab=expression(chi^2), ylab="Densidad")
-
-# Zona crítica
-xc <- seq(chi_crit, max(x_vals), length.out=200)
-yc <- dchisq(xc, df=gl)
-
-polygon(c(xc, rev(xc)), c(yc, rep(0, length(yc))),
-        col=rgb(1,0,0,0.3), border=NA)
-
-# Línea valor crítico
-abline(v=chi_crit, col="red", lwd=2, lty=2)
-
-# Línea valor observado
-abline(v=chi_obs, col="blue", lwd=3)
-
-# Etiquetas
-text(chi_obs, dchisq(chi_obs, gl) + 0.01,
-     paste("χ² observado =", round(chi_obs, 3)),
-     col="blue", pos=3)
-
-text(chi_crit, dchisq(chi_crit, gl) + 0.01,
-     paste("χ² crítico =", round(chi_crit, 3)),
-     col="red", pos=3)
-
-legend("topright",
-       legend=c("Curva Chi²", "Zona crítica", "Valor crítico", "Valor observado"),
-       col=c("black", rgb(1,0,0,0.3), "red", "blue"),
-       lwd=c(2,10,2,3), bty="n")
 ```
 
 ## ¿La edad de las personas está relacionada con la oportunidad de expresarle a otros cómo se sienten durante la pandemia?
