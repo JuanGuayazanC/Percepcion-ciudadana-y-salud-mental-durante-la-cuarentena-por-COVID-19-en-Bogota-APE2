@@ -115,8 +115,8 @@ if(IC[1]>0 | IC[2]<0){
 ```{r  Caso2, echo=TRUE}
 
 # Creación de grupos
-g1 <- base %>% filter(edad >= 15, edad <= 25)
-g2 <- base %>% filter(edad >= 26, edad <= 35)
+g1 <- base %>% filter(edad >= 15, edad <= 28)
+g2 <- base %>% filter(edad >= 35, edad <= 55)
 
 # Eliminación de NA
 g1 <- g1 %>% filter(!is.na(diagnosticado))
