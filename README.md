@@ -1,150 +1,136 @@
-# 📌 Nombre del Proyecto
+# 📌 Percepción ciudadana y salud mental durante la cuarentena por COVID-19 en Bogotá — APE2
 
-> ⚠️ Estado: ***EN DESARROLLO*** Versión académica
+> ⚠️ Estado: **EN DESARROLLO** — Versión académica
 
-Breve descripción que indique qué hace el proyecto y por qué es útil o interesante.
+Análisis exploratorio y pruebas estadísticas sobre la percepción ciudadana y la salud mental durante la cuarentena por COVID-19 en Bogotá. El repositorio contiene los datos originales (CSV), scripts para la importación y transformación, y los documentos RMarkdown con los análisis (univariado, bivariado, y de hipótesis).
 
 ---
 
 ## 👥 Autores
 
-- MARIA PAULA BONILLA MARTINEZ → [maria.bmartinez@mail.escuelaing.edu.co](mailto:maria.bmartinez@mail.escuelaing.edu.co)
-- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JuanGuayazanC) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)
+- MARIA PAULA BONILLA MARTINEZ → [maria.bmartinez@mail.escuelaing.edu.co](mailto:maria.bmartinez@mail.escuelaing.edu.co)  
+- [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JuanGuayazanC) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)  
 - JERONIMO ESTEBAN QUILAGUY TORRES → [jeronimo.quilaguy-t@mail.escuelaing.edu.co](mailto:jeronimo.quilaguy-t@mail.escuelaing.edu.co)
 
- ()     
- →    
-Ingeniería Estadística    
-Escuela Colombiana de Ingeniería Julio Garavito   
-2025-  
+Ingeniería Estadística  
+Escuela Colombiana de Ingeniería Julio Garavito — 2025
 
 ## 🧠 Índice
 
-- 📌 [Nombre del Proyecto](#-nombre-del-proyecto)
-- 👥 [Autores](#-autores)
-- 🚀 [Características](#-características)
-- ⚙️ [Tecnologías](#️-tecnologías)
-- 📦 [Instalación y Requisitos](#-instalación-y-requisitos)
-- ▶️ [Uso](#️-uso)
-- 🧪 [Pruebas](#-pruebas)
-- 📁 [Estructura del Proyecto](#-estructura-del-proyecto)
-- 📌 [TODOs / Funcionalidades Futuras](#-todos--funcionalidades-futuras)
-- 📊 [Estadísticas del Repositorio](#-estadísticas-del-repositorio)
+- 🚀 [Características](#-características)  
+- ⚙️ [Tecnologías](#️-tecnologías)  
+- 📦 [Instalación y Requisitos](#-instalación-y-requisitos)  
+- ▶️ [Uso / Flujo de trabajo](#️-uso--flujo-de-trabajo)  
+- 🧪 [Pruebas](#-pruebas)  
+- 📁 [Estructura del Proyecto](#-estructura-del-proyecto)  
+- 📌 [TODOs / Funcionalidades Futuras](#-todos--funcionalidades-futuras)  
 - 📄 [Licencia](#-licencia)
+
 ---
 
 ## 🚀 Características
 
-- ✅ Lista clara de funcionalidades
-- ✅ Enfoque o propósito (e.g. educativo, de producción, de investigación)
-- ✅ Compatible con [nombre de la plataforma/IDE]
+- Conjunto de scripts reproducibles para importar, limpiar y transformar los datos.
+- Documentos RMarkdown con análisis de hipótesis, análisis univariado y bivariado.
+- Base de datos original incluida (CSV) para reproducibilidad.
+- Salidas ya generadas en HTML para revisión rápida.
 
 ---
 
 ## ⚙️ Tecnologías
 
-- Lenguaje(s): `Java`, `Python`, `JavaScript`, etc.
-- Herramientas: `BlueJ`, `JUnit`, `Gradle`, etc.
-- Dependencias: listado de bibliotecas relevantes
+- Lenguaje principal: R (R scripts y RMarkdown)
+- Documentos: RMarkdown (.Rmd) y salidas HTML
+- Paquetes habituales (sugeridos): tidyverse (readr, dplyr, ggplot2), rmarkdown, knitr, janitor, broom, psych
 
 ---
 
 ## 📦 Instalación y Requisitos
 
+### Requisitos
+- R >= 4.0.0
+- Recomendada: RStudio
+- Paquetes R: tidyverse, rmarkdown, knitr, janitor, broom, psych
+
+Instala paquetes (si aún no los tienes):
+```r
+install.packages(c("tidyverse","rmarkdown","knitr","janitor","broom","psych"))
+```
+
 ### Clonar el repositorio
 ```bash
-git clone https://github.com/JuanSebastianGuayazanClavijoECI/
-````
+git clone https://github.com/JuanGuayazanC/Percepcion-ciudadana-y-salud-mental-durante-la-cuarentena-por-COVID-19-en-Bogota-APE2.git
+cd Percepcion-ciudadana-y-salud-mental-durante-la-cuarentena-por-COVID-19-en-Bogota-APE2
+```
 
-### Requisitos
-
-* 
-* 
-* 
-
-### Instalación
-
-1. 
-2. 
+Abrir el proyecto en RStudio usando el archivo `Proyecto-APE2.Rproj` facilita el trabajo con rutas relativas.
 
 ---
 
-## ▶️ Uso
+## ▶️ Uso / Flujo de trabajo
 
-Describe cómo se ejecuta el programa:
+1. Abrir el proyecto en RStudio.
+2. Ejecutar los scripts en el siguiente orden para reproducir la limpieza y transformación de datos:
+   - `Importacion_BaseDatos.r` — carga inicial de la base CSV.
+   - `Renombramiento.R` — renombra variables para facilitar el análisis.
+   - `transformacionDatos.r` — transformaciones adicionales (factor, recodificaciones).
+   - `MargerDeError.R` — cálculo del margen de error (si aplica para submuestras).
+3. Renderizar los documentos RMarkdown para generar los reportes finales:
+```r
+rmarkdown::render("hipotesis.Rmd")
+rmarkdown::render("AnálisisUnivariado.Rmd")
+rmarkdown::render("AnálisisBivariado.Rmd")
+```
+4. Los archivos HTML resultantes (`hipotesis.html`, `AnálisisUnivariado.html`, `AnálisisBivariado.html`) ya están incluidos en el repo para revisión rápida.
 
-> [!NOTE]
-> Destaca información que los usuarios deben tener en cuenta, incluso al leer por encima.
-
-> [!TIP]
-> Información opcional para ayudar a que un usuario tenga más éxito.
-
-> [!IMPORTANT]
-> Información crucial necesaria para que los usuarios tengan éxito.
-
-> [!WARNING]
-> Contenido crítico que requiere la atención inmediata del usuario debido a posibles riesgos.
-
-> [!CAUTION]
-> Posibles consecuencias negativas de una acción.
-
-También puedes incluir:
-
-* Capturas de pantalla
-* Video demo o GIF
-* Ejemplo de entrada/salida
+Nota: la base de datos principal es `base_saludmental.csv` (~4.8 MB) y está en la raíz del repositorio.
 
 ---
 
 ## 🧪 Pruebas
 
-Describe cómo correr pruebas unitarias o de integración:
-
-```bash
-# Ejemplo con JUnit
-./gradlew test
-```
+No hay pruebas unitarias automatizadas para este proyecto. Para validar resultados manualmente:
+- Verificar que `Importacion_BaseDatos.r` carga todas las filas esperadas.
+- Revisar los resúmenes (summary) en los RMarkdown y comparar con las tablas en los HTML generados.
+- Revisar que las transformaciones en `Renombramiento.R` mantengan la integridad de los datos.
 
 ---
 
 ## 📁 Estructura del Proyecto
 
 ```bash
-📦 nombre-del-repositorio
- ┣ 📂 src/
- ┃ ┣ 📜 Main.java
- ┃ ┣ 📜 ClaseEjemplo.java
- ┣ 📂 test/
- ┃ ┗ 📜 ClaseEjemploTest.java
- ┣ 📜 README.md
+📦 Percepcion-ciudadana-y-salud-mental-durante-la-cuarentena-por-COVID-19-en-Bogota-APE2
  ┣ 📜 .gitignore
- ┗ 📜 build.gradle
+ ┣ 📜 LICENSE
+ ┣ 📜 Proyecto-APE2.Rproj
+ ┣ 📜 base_saludmental.csv
+ ┣ 📜 Importacion_BaseDatos.r
+ ┣ 📜 Renombramiento.R
+ ┣ 📜 transformacionDatos.r
+ ┣ 📜 MargerDeError.R
+ ┣ 📜 AnálisisUnivariado.Rmd
+ ┣ 📜 AnálisisUnivariado.html
+ ┣ 📜 AnálisisBivariado.Rmd
+ ┣ 📜 AnálisisBivariado.html
+ ┣ 📜 hipotesis.Rmd
+ ┗ 📜 hipotesis.html
 ```
 
 ---
 
 ## 📌 TODOs / Funcionalidades Futuras
 
-* [ ] Implementar interfaz gráfica
-* [ ] Integrar con base de datos
-* [ ] Agregar más pruebas unitarias
-
-
----
-
-## 📊 Estadísticas del Repositorio
-
-![Lenguaje principal](https://img.shields.io/github/languages/top/JuanSebastianGuayazanClavijoECI/Plantilla?style=flat-square)
-![Tamaño del repositorio](https://img.shields.io/github/repo-size/JuanSebastianGuayazanClavijoECI/Plantilla?style=flat-square)
-![Stars](https://img.shields.io/github/stars/JuanSebastianGuayazanClavijoECI/Plantilla?style=flat-square)
-![Forks](https://img.shields.io/github/forks/JuanSebastianGuayazanClavijoECI/Plantilla?style=flat-square)
-![Issues abiertas](https://img.shields.io/github/issues/JuanSebastianGuayazanClavijoECI/Plantillao?style=flat-square)
-
+* [ ] Añadir un script central de "pipeline" (Makefile o targets de R) para ejecutar todo automáticamente.
+* [ ] Añadir un notebook con visualizaciones interactivas (shiny o plotly).
+* [ ] Documentar variables de la base (data dictionary).
+* [ ] Agregar validaciones y pruebas de calidad de datos.
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está licenciado bajo propósitos académicos y educativos. Puedes consultar el archivo [LICENSE](./LICENSE) para más información.
+Este proyecto está licenciado para propósitos académicos y educativos. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
 
 ---
+
+Si quieres que haga el commit de este README.md con los cambios al repositorio o que abra un PR en una rama específica, indícame el nombre de la rama y lo realizo.
