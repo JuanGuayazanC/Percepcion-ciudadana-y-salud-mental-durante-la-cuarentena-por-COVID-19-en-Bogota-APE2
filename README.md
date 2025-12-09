@@ -12,10 +12,10 @@ Análisis exploratorio y pruebas estadísticas sobre la percepción ciudadana y 
 - [JUAN SEBASTIÁN GUAYAZÁN CLAVIJO](https://github.com/JuanGuayazanC) → [juan.guayazan-c@mail.escuelaing.edu.co](mailto:juan.guayazan-c@mail.escuelaing.edu.co)  
 - JERONIMO ESTEBAN QUILAGUY TORRES → [jeronimo.quilaguy-t@mail.escuelaing.edu.co](mailto:jeronimo.quilaguy-t@mail.escuelaing.edu.co)
 
-Aprendizaje estadístico 2 (MATE APE2-1 LEC (1682))  
-Coordinación Ingeniería Estadística 
-Ingeniería Estadística 
-Escuela Colombiana de Ingeniería Julio Garavito 
+Aprendizaje estadístico 2 (MATE APE2-1 LEC (1682))      
+Coordinación Ingeniería Estadística     
+Ingeniería Estadística     
+Escuela Colombiana de Ingeniería Julio Garavito     
 2025-2 
 
 ## 🧠 Índice
