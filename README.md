@@ -42,6 +42,8 @@ Escuela Colombiana de Ingeniería Julio Garavito
 
 ## ⚙️ Tecnologías
 
+![R](https://img.shields.io/badge/R-276DC3?style=flat-square&logo=r&logoColor=white)
+
 - Lenguaje principal: R (R scripts y RMarkdown)
 - Documentos: RMarkdown (.Rmd) y salidas HTML
 - Paquetes habituales (sugeridos): tidyverse (readr, dplyr, ggplot2), rmarkdown, knitr, janitor, broom, psych
